@@ -15,9 +15,6 @@ class NewsController < ApplicationController
       )
     ]
 
-
-
-
     # @news = current_user.news
   end
 

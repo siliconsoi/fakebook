@@ -28,7 +28,6 @@
 	  	<a href="#"><%= news.first_name %></a><br />
 	  	<div > <%= news.text %> </div><br />
 	  	<% news.comments.each do |comment| %>
-
 	  		<%= comment.first_name %> : <%= comment.text %><br />
     	<% end %>
 	  	<input type="textarea" placeholder = "what you say " style=" width : 500px;" /><br />
