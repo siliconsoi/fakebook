@@ -31,6 +31,7 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
+    cocaine (0.4.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -53,13 +54,23 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.7.6)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.5.0)
+    mysql2 (0.3.11)
     orm_adapter (0.4.0)
+    paperclip (3.4.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.4.0)
+      mime-types
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -113,8 +124,11 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
-  devise (>= 2.1.0)
+  devise (~> 2.1.2)
   jquery-rails
+  kaminari
+  mysql2 (~> 0.3.11)
+  paperclip (~> 3.4.0)
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)
   sqlite3
