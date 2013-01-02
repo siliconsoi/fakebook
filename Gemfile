@@ -7,7 +7,7 @@ gem 'sqlite3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# gem 'sqlite3'
+gem 'sqlite3'
 gem "mysql2", "~> 0.3.11"
 gem "devise", "~> 2.1.2"
 gem "paperclip", "~> 3.4.0"
