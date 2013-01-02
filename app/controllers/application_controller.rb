@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      return homes_path
+      return news_index_path
     else
       'http://www.google.com'
     end
