@@ -13,8 +13,10 @@
     <a class="brand" href="#">Fakebook</a>
     <ul class="nav">
       <li><%= link_to 'Home', news_index_path %></li>
-      <li><a href="#">Manage Account</a></li>
+      <li><%= link_to 'Manage Account', edit_user_registration_path %></li>
       <li><a href="#">Mangge Friends</a></li>
+      <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+
     </ul>
   </div>
 </div>
@@ -30,3 +32,4 @@
 
 </body>
 </html>
+

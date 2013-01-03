@@ -1,25 +1,78 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <table><tr><td>
+  <div class="span3">
+    <div class="well sidebar-nav" style=" width : 400px;">
+      <ul class="nav nav-list">
+        <li class="nav-header"></li>
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+        <li class="nav"><%= devise_error_messages! %></li>
+      </ui>
+      <table><tr>
+        <td>
+          <div class="muted"><h4>Manage your account</h4></div>
+        </td><td>
+           <div style="padding-left: 80px;"><%= image_tag current_user.avatar.url, :id => "display", :height=>"80", :width=>"80" %></div>
+        </td></tr></table>
+      <div style="padding-top: 30px;">
+      <table>
+       <tr><td>
+            <%= f.label :avatar %>
+          </td><td>
+            <%= f.file_field :avatar , :class => "btn btn-small btn-primary ", :onchange => "readURL(this)" %>
+        </td></tr><tr><td>
+            <%= f.label :email %>
+          </td><td>
+            <%= f.email_field :email %>
+        </td></tr><tr><td>
+            <%= f.label :Firstname %>
+          </td><td>
+            <%= f.text_field :firstname %>
+        </td></tr><tr><td>
+            <%= f.label :LastNmae %>
+          </td><td>
+            <%= f.text_field :lastname %>
+        </td></tr><tr><td>
+          <%= f.label :password %>
+          </td><td>
+          <%= f.password_field :password, :autocomplete => "off" %>
+        </td></tr><tr><td>
+          <%= f.label :password_confirmation %>
+          </td><td>
+          <%= f.password_field :password_confirmation %>
+        </td></tr><tr><td>
+          <%= f.label :current_password %>
+          </td><td>
+          <%= f.password_field :current_password %>
+        </td></tr><tr><td>
+          <%= f.submit "Update", :class => "btn btn-primary" %>
+          </td></tr></table>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+</td></tr><tr><td>
+<div class="span3" style="">
+    <div class="well sidebar-nav" style=" width : 400px;">
+        <div class="muted"><h4>Cancel my account</h4></div>
+        <%= link_to "Cancel my account.", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete , :class => "btn btn-primary" %><br /><br />
+        <%= link_to "Oops! wrong page. Send me back.", :back, :class => "btn btn-primary" %>
+  </div>
+</div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+</td></tr></table>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#display').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 
-  <div><%= f.submit "Update" %></div>
-<% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>

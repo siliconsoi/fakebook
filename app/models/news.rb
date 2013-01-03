@@ -6,7 +6,6 @@ class News < ActiveRecord::Base
   validates :status, :presence => true,
                     :length => { :minimum => 1 }
 
-
   # def initialize(user, status)
   #   @user = user
   #   @status = status
@@ -17,4 +16,5 @@ class News < ActiveRecord::Base
   #   self.status = @status
   #   self.save
   # end
+
 end

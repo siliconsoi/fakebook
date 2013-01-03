@@ -1,11 +1,11 @@
-<%text = "What\'s going on, @current_user.first_name" %>
+<%text = "What\'s going on, "+@current_user.firstname %>
 
 <table><tr><td>
 
 	<div class="span3">
 	  <div class="well sidebar-nav" style=" height : 600px;">
 	    <ul class="nav nav-list">
-	      <li class="nav-header">Hello! @current_user.first_name</li>
+	      <li class="nav-header">Hello! <%= current_user.firstname %></li>
 	      <li>@display picture </li>
 	    </ul>
 	  </div><!--/.well -->
@@ -16,25 +16,43 @@
 	<div class="span8">
 	  <div class="well sidebar-nav">
 	  	Post your status here<br />
-	  	<input type="textarea" placeholder = "<%= text %>" style=" width : 500px;" /><br /><br />
-	  	<input type="button" class="btn btn-primary" value="Post">
-	  	<input type="button" class="btn clear" value="clear">
+	  	<%= form_for @news, :url => news_index_path do |f| %>
+		  	<%= f.text_area :status, :placeholder => text, :style=>" width: 500px; resize: none;", :rows=>"3", %><br />
+		  	<%= f.submit "Post", :class => "btn btn-primary" %>
+		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
+	  	<%end%>
 	  </div><!--/.well -->
 	</div><!--/span-->
-	<% @feed_news.each do |news| %>
+
+	<% @friends.each do |friend| %>
 	<div class="span8">
 	  <div class="well sidebar-nav">
-	  	<a href="#"><%= news.first.user_id %></a><br />
 
-	  	<input type="textarea" placeholder = "what you say " style=" width : 500px;" /><br />
-	  	<input type="button" class="btn btn-primary" value="Post">
+	  	<a href="#"><%= User.find(friend.friend_id).firstname %></a><br />
+	  	<div > <%= News.find_by_user_id(friend.friend_id).status %></div><br />
+			<%= form_for @comment, :url => comments_path do |f| %>
+			  	<%= f.text_area :body, :placeholder => "What you say?", :style=>"width: 500px; resize: none;", :rows=>"2", %><br />
+			  	<%= f.hidden_field :news_owner, :value => friend.friend_id %>
+			  	<%= f.submit "Post", :class => "btn btn-primary" %>
+		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
+	  	<%end%>
+
 	  </div><!--/.well -->
 	</div><!--/span-->
       <br />
     <% end %>
 
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-
-
 </td></tr></table>
 
+<script type="text/javascript">
+
+(function($){
+	$('.clear_text').on('click', clear);
+
+	function clear(){
+		$('textarea').val('')
+	}
+
+}(jQuery));
+
+</script>

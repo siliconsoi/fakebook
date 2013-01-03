@@ -16,8 +16,9 @@ class NewsController < ApplicationController
     #   )
     # ]
 
-    @feed_news = Friendship.friend(current_user)
-
+    @friends = current_user.friendships
+    @news = News.new
+    @comment = Comment.new
   end
 
   def create
