@@ -21,12 +21,10 @@
 	  	<input type="button" class="btn clear" value="clear">
 	  </div><!--/.well -->
 	</div><!--/span-->
-
 	<% @feed_news.each do |news| %>
 	<div class="span8">
 	  <div class="well sidebar-nav">
 	  	<a href="#"><%= User.find(news.friend_id).firstname %></a><br />
-	  	<div > <%= News.find_by_user_id(news.friend_id).status %> </div><br />
 
 	  	<input type="textarea" placeholder = "what you say " style=" width : 500px;" /><br />
 	  	<input type="button" class="btn btn-primary" value="Post">

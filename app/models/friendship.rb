@@ -3,6 +3,9 @@ class Friendship < ActiveRecord::Base
   belongs_to :user
 
   def self.friend(user)
-    user.friendships
+   f = Friendship.find_all_by_user_id(user)
+    f.collect do |ff|
+        News.find_all_by_user_id(ff.friend_id)
+    end
   end
 end
