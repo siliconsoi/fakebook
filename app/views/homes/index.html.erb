@@ -1,0 +1,10 @@
+<% a = current_user.friendships %>
+
+<% a.each do |aa| %>
+	<%= News.find_by_user_id(aa.friend_id).status %>
+<% end %>
+
+
+<p>
+	<%= @news %>
+</p>

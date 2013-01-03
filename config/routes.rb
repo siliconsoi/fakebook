@@ -1,6 +1,13 @@
 Fakebook::Application.routes.draw do
-  devise_for :users
-  resources :news, :only => [:index]
 
   root :to => 'news#index'
+  devise_for :users
+
+  # resources :homes do
+    resources :news
+    resources :accounts
+    resources :find_friends
+    resources :friendships
+  # end
+
 end

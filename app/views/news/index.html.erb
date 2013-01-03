@@ -21,7 +21,7 @@
 	  	<input type="button" class="btn clear" value="clear">
 	  </div><!--/.well -->
 	</div><!--/span-->
-
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 	<% @news.each do |news| %>
 	<div class="span8">
 	  <div class="well sidebar-nav">
