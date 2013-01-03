@@ -13,3 +13,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore all imagees
+public/assets/images/*.*
+public/assets/images/users/*.*
+
+
+*.DS_Store

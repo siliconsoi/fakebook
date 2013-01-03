@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102065730) do
+ActiveRecord::Schema.define(:version => 20130103043808) do
+
+  create_table "comments", :force => true do |t|
+    t.string   "commenter"
+    t.text     "body"
+    t.integer  "news_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "comments", ["news_id"], :name => "index_comments_on_news_id"
 
   create_table "friendships", :force => true do |t|
     t.integer  "friend_id"
@@ -42,6 +52,10 @@ ActiveRecord::Schema.define(:version => 20130102065730) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
