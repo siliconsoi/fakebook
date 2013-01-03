@@ -17,8 +17,12 @@ class NewsController < ApplicationController
     # ]
 
     @feed_news = Friendship.friend(current_user)
-    @news = News.status(current_user)
 
+  end
+
+  def create
+    news = News.new(current_user, params[:status])
+    news.create
   end
 
 end

@@ -24,7 +24,7 @@
 	<% @feed_news.each do |news| %>
 	<div class="span8">
 	  <div class="well sidebar-nav">
-	  	<a href="#"><%= User.find(news.friend_id).firstname %></a><br />
+	  	<a href="#"><%= news.first.user_id %></a><br />
 
 	  	<input type="textarea" placeholder = "what you say " style=" width : 500px;" /><br />
 	  	<input type="button" class="btn btn-primary" value="Post">
