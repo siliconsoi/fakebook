@@ -5,5 +5,6 @@ class CreateFriendships < ActiveRecord::Migration
       t.references :user
       t.timestamps
     end
+
   end
 end
