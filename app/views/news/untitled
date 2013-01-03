@@ -21,12 +21,16 @@
 	  	<input type="button" class="btn clear" value="clear">
 	  </div><!--/.well -->
 	</div><!--/span-->
-	<% @feed_news.each do |news| %>
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+	<% @news.each do |news| %>
 	<div class="span8">
 	  <div class="well sidebar-nav">
-	  	<a href="#"><%= User.find(news.friend_id).firstname %></a><br />
-	  	<div > <%= News.find_by_user_id(news.friend_id).status %> </div><br />
+	  	<a href="#"><%= news.first_name %></a><br />
+	  	<div > <%= news.text %> </div><br />
+	  	<% news.comments.each do |comment| %>
 
+	  		<%= comment.first_name %> : <%= comment.text %><br />
+    	<% end %>
 	  	<input type="textarea" placeholder = "what you say " style=" width : 500px;" /><br />
 	  	<input type="button" class="btn btn-primary" value="Post">
 	  </div><!--/.well -->
@@ -34,8 +38,9 @@
       <br />
     <% end %>
 
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-
+    <% a.each do |aa| %>
+	<%= News.find_by_user_id(aa.friend_id).status %>
+<% end %>
 
 </td></tr></table>
 

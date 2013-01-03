@@ -15,12 +15,9 @@ class NewsController < ApplicationController
     #                  ]
     #   )
     # ]
+    @feed_news = current_user.friendships
+    @feed = current_user.news.new
 
-    cuser = current_user.news
-    @news = cuser.new
-
-
-    # @news = current_user.news
   end
 
 end
