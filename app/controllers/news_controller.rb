@@ -17,6 +17,13 @@ class NewsController < ApplicationController
     # ]
     @feed_news = current_user.friendships
     @feed = current_user.news.new
+    @news = News.new
+
+  end
+
+  def create
+    p 'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT'
+    p params.inspect
 
   end
 

@@ -16,9 +16,12 @@
 	<div class="span8">
 	  <div class="well sidebar-nav">
 	  	Post your status here<br />
-	  	<input type="textarea" placeholder = "<%= text %>" style=" width : 500px;" /><br /><br />
-	  	<input type="button" class="btn btn-primary" value="Post">
-	  	<input type="button" class="btn clear" value="clear">
+	  	<%= form_for @news, :url => news_index_path do |f| %>
+		  	<%= f.text_area :status, :placeholder => text, :style=>" width : 500px;", :rows=>"3", :resize => "none" %><br />
+		  	<%= f.submit "Post", :class => "btn btn-primary" %>
+		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
+	  	<%end%>
+
 	  </div><!--/.well -->
 	</div><!--/span-->
 
@@ -26,17 +29,61 @@
 	<div class="span8">
 	  <div class="well sidebar-nav">
 	  	<a href="#"><%= User.find(news.friend_id).firstname %></a><br />
-	  	<div > <%= News.find_by_user_id(news.friend_id).status %> </div><br />
+	  	<div > <%= News.find_by_user_id(news.friend_id).status %></div><br />
 
-	  	<input type="textarea" placeholder = "what you say " style=" width : 500px;" /><br />
-	  	<input type="button" class="btn btn-primary" value="Post">
+	  	<textarea placeholder = "what you say " style=" width : 500px; resize: none" rows="2" ></textarea><br />
+	  	<input type="button" class="btn btn-primary comment" value="Post">
 	  </div><!--/.well -->
 	</div><!--/span-->
       <br />
     <% end %>
 
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-
-
 </td></tr></table>
 
+<script type="text/javascript">
+
+(function($){
+	$('.clear_text').on('click', clear);
+
+	function clear(){
+		$('textarea').val('')
+	}
+
+
+
+
+
+
+	// $('.show_hide_all_btn').on('click', show_hide);
+	// $('.show_hide_each').on('click', show_hide_each);
+
+	// var info = {
+	// 	hide: {
+	// 		anim: 'slideUp', text: 'Show All', next_action: 'show', text_each: 'Show'
+	// 	},
+	// 	show: {
+	// 		anim: 'slideDown', text: 'Hide All', next_action: 'hide', text_each: 'Hide'
+	// 	}
+	// };
+
+	// function show_hide(evt) {
+	// 	var $t = $(evt.currentTarget),
+	// 		action = $t.attr('data-btn-action');
+	// 	evt.preventDefault();
+	// 	$('.contract-detail')[info[action].anim](0);
+	// 	$t.text(info[action].text).attr('data-btn-action', info[action].next_action);
+	// 	$('.show_hide_each').text(info[action].text_each);
+	// }
+
+	// function show_hide_each(evt) {
+	// 	var $t = $(evt.currentTarget),
+	// 		$detail = $t.closest('tr').next('.contract-detail'),
+	// 		visible = $detail.filter(':visible').length ? true : false;
+	// 	evt.preventDefault();
+	// 	$detail[ visible ? 'slideUp' : 'slideDown'](0);
+	// 	$t.text(visible ? 'Show' : 'Hide');
+	// }
+
+}(jQuery));
+
+</script>
