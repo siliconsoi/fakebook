@@ -25,4 +25,14 @@ class User < ActiveRecord::Base
 
   validates_attachment_size :avatar, :less_than => 1.megabytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/jpg']
+
+  def self.search(search)
+    if search == nil
+      self.all
+    else
+      search_condition = "%" + search + "%"
+      self.find(:all, :conditions => ['email LIKE ? OR firstname LIKE ? OR lastname LIKE ?', search_condition, search_condition, search_condition])
+    end
+  end
+
 end

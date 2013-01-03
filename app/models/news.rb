@@ -7,14 +7,14 @@ class News < ActiveRecord::Base
                     :length => { :minimum => 1 }
 
 
-  def initialize(user, status)
-    @user = user
-    @status = status
-  end
+  # def initialize(user, status)
+  #   @user = user
+  #   @status = status
+  # end
 
-  def create_news
-    self.user_id = @user.id
-    self.status = @status
-    self.save
-  end
+  # def create_news
+  #   self.user_id = @user.id
+  #   self.status = @status
+  #   self.save
+  # end
 end

@@ -33,6 +33,9 @@ namespace :fb do
       Friendship.new({:friend_id => 3, :user_id => 1}).save
       Friendship.new({:friend_id => 4, :user_id => 1}).save
       Friendship.new({:friend_id => 1, :user_id => 2}).save
+      Friendship.new({:friend_id => 1, :user_id => 4}).save
+      Friendship.new({:friend_id => 1, :user_id => 4}).save
+      Friendship.new({:friend_id => 1, :user_id => 4}).save
     end
 
     task :create_news => :environment do

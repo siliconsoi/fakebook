@@ -21,8 +21,8 @@ class NewsController < ApplicationController
   end
 
   def create
-    news = News.new(current_user, params[:status])
-    news.create
+    # news = News.new(current_user, params[:status])
+    # news.create_news
   end
 
 end
