@@ -1,7 +1,7 @@
 class NewsController < ApplicationController
 
-
   def index
+
     # @news = [
     #   OpenStruct.new(:first_name => "George" ,:text => "Hello Kitty",
     #     :comments => [
