@@ -22,7 +22,8 @@ class NewsController < ApplicationController
   end
 
   def create
-    redirect_to "http://www.yahoo.com"
+    # news = News.new(current_user, params[:status])
+    # news.create_news
   end
 
 end

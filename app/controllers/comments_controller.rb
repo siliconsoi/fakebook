@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    p 'TTTTTTTTTTTTTTTTTTTTTTTTTT'
-    p params.inspect
+    # comments = Comments.new(current_user, news_id, params[:comments])
+    # comments.create_comments
   end
 end
