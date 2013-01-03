@@ -11,6 +11,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :firstname, :lastname, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
+  attr_accessible :email,:avatar ,:firstname, :lastname, :password, :password_confirmation, :remember_me, :avatar_file_name,
+                  :avatar_content_type, :avatar_file_size, :avatar_updated_at
+  # Avatar
+  has_attached_file :avatar,
+                    :styles =>{
+                    :thumb  => "100x100",
+                    :medium => "200x200",
+                    :large => "400x400"},
+                    :default_url => "http://placehold.it/100&text=IMAGE",
+                    :url  => "images/users/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/images/users/:id/:style/:basename.:extension"
+
+  validates_attachment_size :avatar, :less_than => 1.megabytes
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/jpg']
 end

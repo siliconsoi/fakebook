@@ -1,4 +1,7 @@
 class News < ActiveRecord::Base
   attr_accessible :status, :user_id
-  belong_to :user
+
+  def self.status(user)
+    user.news
+  end
 end
