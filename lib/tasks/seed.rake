@@ -43,6 +43,13 @@ namespace :fb do
       News.new({:status => 'I am number 4', :user_id => 4}).save
     end
 
+    task :create_comments => :environment do
+      puts "Creating Comments"
+      Comment.new({:user_id => 1, :body => 'So cool', :new_id => 1}).save
+      Comment.new({:user_id => 2, :body => 'So good!!', :new_id => 1}).save
+      Comment.new({:user_id => 2, :body => 'Exactly!!!', :new_id => 2}).save
+    end
+
   end
 
 end
