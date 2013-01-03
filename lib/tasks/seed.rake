@@ -11,7 +11,8 @@ namespace :fb do
     task :default => [
       :create_users,
       :create_friendships,
-      :create_news
+      :create_news,
+      :create_comments
     ]
 
     task :create_users => :environment do
@@ -45,9 +46,9 @@ namespace :fb do
 
     task :create_comments => :environment do
       puts "Creating Comments"
-      Comment.new({:user_id => 1, :body => 'So cool', :new_id => 1}).save
-      Comment.new({:user_id => 2, :body => 'So good!!', :new_id => 1}).save
-      Comment.new({:user_id => 2, :body => 'Exactly!!!', :new_id => 2}).save
+      Comment.new({:user_id => 1, :body => 'So cool', :news_id => 1}).save
+      Comment.new({:user_id => 2, :body => 'So good!!', :news_id => 1}).save
+      Comment.new({:user_id => 2, :body => 'Exactly!!!', :news_id => 2}).save
     end
 
   end
