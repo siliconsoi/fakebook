@@ -16,19 +16,13 @@ class NewsController < ApplicationController
     #   )
     # ]
 
-    @feed_news = current_user.friendships
-    @feed = current_user.news.new
+    @friends = current_user.friendships
     @news = News.new
-
+    @comment = Comment.new
   end
 
   def create
-    p 'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT'
-    p params.inspect
-
-    @feed_news = Friendship.friend(current_user)
-    @news = News.status(current_user)
-
+    redirect_to "http://www.yahoo.com"
   end
 
 end
