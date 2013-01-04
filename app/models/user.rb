@@ -1,9 +1,7 @@
 class User < ActiveRecord::Base
   has_many :friendships
   has_many :news
-  has_many :friends, :through => :friendships
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
-  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  has_many :users, :source => :friend, :through => :friendships
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -34,6 +32,18 @@ class User < ActiveRecord::Base
       search_condition = "%" + search + "%"
       self.find(:all, :conditions => ['email LIKE ? OR firstname LIKE ? OR lastname LIKE ?', search_condition, search_condition, search_condition])
     end
+  end
+
+  def feed(friendships)
+    # friendships = FriendShip.where("user_id = ?", self.id)
+    sql = gen_sql(friendships)
+    @feed = News.where(sql)
+  end
+
+  def gen_sql(friendships)
+    friendships.collect do |friendship|
+      "user_id = " + friendship.friend_id.to_s
+    end.join(" or ") + " or user_id = " + self.id.to_s
   end
 
 end

@@ -10,7 +10,7 @@
         <td>
           <div class="muted"><h4>Manage your account</h4></div>
         </td><td>
-           <div style="padding-left: 80px;"><%= image_tag current_user.avatar.url, :id => "display", :height=>"80", :width=>"80" %></div>
+           <div style="padding-left: 80px;"><%= image_tag current_user.avatar.url(:medium), :id=>"display"%></div>
         </td></tr></table>
       <div style="padding-top: 30px;">
       <table>

@@ -1,22 +1,8 @@
 class NewsController < ApplicationController
 
   def index
-
-    # @news = [
-    #   OpenStruct.new(:first_name => "George" ,:text => "Hello Kitty",
-    #     :comments => [
-    #         OpenStruct.new(:first_name => "Jill", :text => "So cute"),
-    #         OpenStruct.new(:first_name => "Tom", :text => "I don't think so")
-    #                  ]
-    #   ),
-    #   OpenStruct.new(:first_name => "Bill", :text => "Yeahh...!",
-    #     :comments => [
-    #         OpenStruct.new(:first_name => "Ali", :text => "What happen?")
-    #                  ]
-    #   )
-    # ]
-
-    @friends = current_user.friendships
+    feeds = current_user.feed(current_user.friendships)
+    @feeds = Kaminari.paginate_array(feeds).page(params[:page]).per(3)
     @news = News.new
     @comment = Comment.new
   end
@@ -27,9 +13,4 @@ class NewsController < ApplicationController
   end
 
 end
-
-
-
-
-
 

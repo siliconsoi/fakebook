@@ -39,7 +39,7 @@ namespace :fb do
       puts "Creating News"
       News.new({:status => 'I am number 1', :user_id => 1}).save
       News.new({:status => 'I am number 2', :user_id => 2}).save
-      News.new({:status => 'I am number 2 again', :user_id => 2}).save
+      News.new({:status => 'I is number 2 again', :user_id => 2}).save
       News.new({:status => 'I am number 3', :user_id => 3}).save
       News.new({:status => 'I am number 4', :user_id => 4}).save
     end

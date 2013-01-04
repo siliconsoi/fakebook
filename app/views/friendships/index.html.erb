@@ -1,0 +1,39 @@
+<table><tr><td>
+
+	<div class="span3">
+	  <div class="well sidebar-nav" style=" height : 600px;">
+	    <ul class="nav nav-list">
+	      <li class="nav-header">Hello! <%= current_user.firstname %></li>
+	      <li><div><%= image_tag current_user.avatar.url(:medium), :id=>"display"%></div></li>
+	    </ul>
+	  </div><!--/.well -->
+	</div><!--/span-->
+
+</td><td>
+
+<% @friends.each do |user| %>
+	<div class="span8">
+	  <div class="well sidebar-nav" >
+	  	<table>
+			<tr>
+				<td>
+				    <ul class="nav nav-list">
+				      <li><div><%= image_tag user.avatar.url(:thumb) %></div></li>
+				    </ul>
+				</td><td>
+					<div class="text-info" > First name: <%= user.firstname %></div><br />
+					<div class="text-info" > Last name: <%= user.lastname %></div><br />
+					<div class="text-info" > Email: <%= user.email %></div><br />
+				</td><td>
+					<div style="padding-left: 100px;">
+					<%= link_to "Delete", friendship_path(user), :method => :delete, :confirm => 'Are you sure?', :class => "btn btn-small btn-danger" %>
+					</div>
+				</td>
+			</tr>
+		</table>
+	  </div><!--/.well -->
+	</div><!--/span-->
+
+<%end%>
+
+</td></tr></table>

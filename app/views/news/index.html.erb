@@ -6,7 +6,7 @@
 	  <div class="well sidebar-nav" style=" height : 600px;">
 	    <ul class="nav nav-list">
 	      <li class="nav-header">Hello! <%= current_user.firstname %></li>
-	      <li>@display picture </li>
+	      <li><div><%= image_tag current_user.avatar.url(:medium), :id=>"display"%></div></li>
 	    </ul>
 	  </div><!--/.well -->
 	</div><!--/span-->
@@ -24,15 +24,15 @@
 	  </div><!--/.well -->
 	</div><!--/span-->
 
-	<% @friends.each do |friend| %>
+	<% @feeds.each do |news| %>
 	<div class="span8">
 	  <div class="well sidebar-nav">
 
-	  	<a href="#"><%= User.find(friend.friend_id).firstname %></a><br />
-	  	<div > <%= News.find_by_user_id(friend.friend_id).status %></div><br />
+	  	<a href="#"><%= User.find(news.user_id).firstname %></a><br />
+	  	<div > <%= news.status %></div><br />
 			<%= form_for @comment, :url => comments_path do |f| %>
 			  	<%= f.text_area :body, :placeholder => "What you say?", :style=>"width: 500px; resize: none;", :rows=>"2", %><br />
-			  	<%= f.hidden_field :news_owner, :value => friend.friend_id %>
+			  	<%= f.hidden_field :news_owner, :value => news.user_id %>
 			  	<%= f.submit "Post", :class => "btn btn-primary" %>
 		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
 	  	<%end%>

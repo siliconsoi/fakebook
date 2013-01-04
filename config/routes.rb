@@ -2,10 +2,8 @@ Fakebook::Application.routes.draw do
 
   root :to => 'news#index'
   devise_for :users
-
-    resources :news
-    resources :comments, :only => [:create, :delete]
-    resources :find_friends
-    resources :friendships
-
+  resources :news
+  resources :comments,        :only => [:create, :destroy]
+  resources :find_friends,    :only => [:show]
+  resources :friendships,     :only => [:create, :destroy, :index]
 end
