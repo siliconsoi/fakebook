@@ -10,7 +10,7 @@
         <td>
           <div class="muted"><h4>Manage your account</h4></div>
         </td><td>
-           <div style="padding-left: 80px;"><%= image_tag current_user.avatar.url(:medium), :id=>"display"%></div>
+           <div style="padding-left: 80px;"><%= image_tag current_user.avatar.url, :heigth => "200px", :width => "200px", :id=>"display"%></div>
         </td></tr></table>
       <div style="padding-top: 30px;">
       <table>
@@ -20,7 +20,7 @@
             <table><tr><td>
             <%= f.file_field :avatar, :onchange => "readURL(this)", :style=> "width: 80px; padding-bottom: 10px;" %>
           </td><td>
-            <input type="text" id="display" style="width:120px;">
+            <input type="text" id="display_file_name" class="span2" disabled="disabled">
           </td></tr></table>
         </td></tr><tr><td>
             <%= f.label :email %>
@@ -72,9 +72,11 @@
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $('#display').attr('value', e.target.result);
+                $('#display').attr('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
+
+            $("#display_file_name").val(input.files[0].name);
         }
     }
 </script>
