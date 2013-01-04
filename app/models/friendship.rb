@@ -4,6 +4,7 @@ class Friendship < ActiveRecord::Base
 
   def self.friend(user)
     friends = Friendship.find_all_by_user_id(user)
+    friends = Friendship.where("user")
     friends.collect do |friend|
         News.find_all_by_user_id(friend.friend_id)
     end

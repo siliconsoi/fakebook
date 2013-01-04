@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :friendships
   has_many :news
-  # has_many :friends, :through => :friendships
+  has_many :users, :source => :friendship , :through => :friendships, :foreign_key => "friend_id"
   # has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   # has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   # Include default devise modules. Others available are:
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
                     :thumb  => "100x100",
                     :medium => "200x200",
                     :large => "400x400"},
-                    :default_url => "http://placehold.it/100&text=IMAGE",
+                    :default_url => "http://www.classtools.net/main_area/fakebook/icons/silhouette.png",
                     :url  => "images/users/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/assets/images/users/:id/:style/:basename.:extension"
 
