@@ -1,5 +1,7 @@
 class FindFriendsController < ApplicationController
   def index
-      @people = User.find_by_sql(["SELECT DISTINCT(user_id) from Friendships WHERE user_id IS NOT ?", current_user.id])
+      if !params[:keyword].nil?
+        @results = current_user.find_new_friends(keyword)
+      end
   end
 end

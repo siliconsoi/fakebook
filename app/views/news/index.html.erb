@@ -2,14 +2,7 @@
 
 <table><tr><td>
 
-	<div class="span3">
-	  <div class="well sidebar-nav" style=" height : 600px;">
-	    <ul class="nav nav-list">
-	      <li class="nav-header">Hello! <%= current_user.firstname %></li>
-	      <li><div><%= image_tag current_user.avatar.url(:medium), :id=>"display"%></div></li>
-	    </ul>
-	  </div><!--/.well -->
-	</div><!--/span-->
+	<%= render  :partial => "partial/user_detail" %>
 
 </td><td>
 
@@ -39,12 +32,14 @@
 			  </div>
 		 </td></tr></table>
 	  	<% news.comments.each do |comment|%>
+	  		<% commenter = User.find(comment.user_id).firstname %>
 		  	<table><tr>
 		  		<td>
 			  		<div ><%= image_tag owner.avatar.url(:thumb), :height =>"50px", :width => "30px",
 			  		:style=> "padding-bottom: 20px;"%></div>
 		  		</td><td>
-			  		<div class="text-warning" style="padding-left: 20px;"> <%= comment.body %></div><br />
+			  		<div class="text-warning" style="padding-left: 20px;">
+			  			<a href="#"><%= commenter %></a>: <%= comment.body %></div><br />
 			 </td></tr></table>
 	  	<%end%>
 

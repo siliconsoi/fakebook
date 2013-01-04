@@ -4,6 +4,6 @@ Fakebook::Application.routes.draw do
   devise_for :users
   resources :news
   resources :comments,        :only => [:create, :destroy]
-  resources :find_friends,    :only => [:show]
+  resources :find_friends,    :only => [:index]
   resources :friendships,     :only => [:create, :destroy, :index]
 end
