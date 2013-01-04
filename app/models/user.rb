@@ -39,6 +39,9 @@ class User < ActiveRecord::Base
   end
 
   def gen_sql(friendships)
+    # friendships.collect do |friendship|
+    #   "user_id = " + friendship.friend_id.to_s
+    # end.join(" or user_id = " + self.id.to_s)
     friendships.collect do |friendship|
       "user_id = " + friendship.friend_id.to_s
     end.join(" or ") + " or user_id = " + self.id.to_s
