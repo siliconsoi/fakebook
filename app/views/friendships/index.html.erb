@@ -1,14 +1,5 @@
 <table><tr><td>
-
-	<div class="span3">
-	  <div class="well sidebar-nav" style=" height : 600px;">
-	    <ul class="nav nav-list">
-	      <li class="nav-header">Hello! <%= current_user.firstname %></li>
-	      <li><div><%= image_tag current_user.avatar.url(:medium), :id=>"display"%></div></li>
-	    </ul>
-	  </div><!--/.well -->
-	</div><!--/span-->
-
+	<%= render  :partial => "partial/user_detail" %>
 </td><td>
 
 <% @friends.each do |user| %>
@@ -18,7 +9,7 @@
 			<tr>
 				<td>
 				    <ul class="nav nav-list">
-				      <li><div><%= image_tag user.avatar.url(:thumb) %></div></li>
+				      <li><div><%= image_tag user.avatar.url(:thumb), :height =>"110px", :width => "110px"%></div></li>
 				    </ul>
 				</td><td>
 					<div class="text-info" > First name: <%= user.firstname %></div><br />

@@ -44,4 +44,10 @@ class User < ActiveRecord::Base
     end.join(" or ") + " or user_id = " + self.id.to_s
   end
 
+  def find_new_friends(keyword)
+    keyword = "%"+keyword+"%"
+    # User.find_by_sql(["SELECT DISTINCT(user_id) from Friendships WHERE user_id IS NOT ?", self.id])
+    User.find_by_sql(["SELECT * from users where (firstname like ? or lastname like ? or email like ?) and (id <> ?)", keyword, keyword, keyword, self.id])
+  end
+
 end

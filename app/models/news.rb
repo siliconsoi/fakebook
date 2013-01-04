@@ -7,8 +7,6 @@ class News < ActiveRecord::Base
                     :length => { :minimum => 1 }
 
   def self.create_news(user, status)
-    p "T________________________________________T"
-    p status
     news = News.new
     news.user_id = user.id
     news.status = status
