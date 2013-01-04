@@ -7,10 +7,12 @@ class NewsController < ApplicationController
     @comment = Comment.new
   end
 
+  def new
+  end
+
   def create
-    # news = News.new(current_user, params[:status])
-    # news.create_news
+    News.create_news(current_user, params[:news][:status])
+    redirect_to news_index_path
   end
 
 end
-

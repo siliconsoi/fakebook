@@ -15,7 +15,7 @@
 
 	<div class="span8">
 	  <div class="well sidebar-nav">
-	  	Post your status here<%=current_user.id%><br />
+	  	Post your status here!<br />
 	  	<%= form_for @news, :url => news_index_path do |f| %>
 		  	<%= f.text_area :status, :placeholder => text, :style=>" width: 500px; resize: none;", :rows=>"3", %><br />
 		  	<%= f.submit "Post", :class => "btn btn-primary" %>
@@ -25,19 +25,32 @@
 	</div><!--/span-->
 
 	<% @feeds.each do |news| %>
+	<%owner = User.find(news.user_id)%>
 	<div class="span8">
 	  <div class="well sidebar-nav">
-
-	  	<a href="#"><%= User.find(news.user_id).firstname %></a><br />
-	  	<div class="text-error"> <%= news.status %></div><br />
-
+	  	<table><tr>
+	  		<td>
+		  		<div ><%= image_tag owner.avatar.url(:thumb), :height =>"50px", :width => "50px",
+		  		:style=> "padding-bottom: 20px;" %></div>
+		  	</td><td>
+		  		<div style="padding-left: 20px;">
+			  	<a href="#"><%= owner.firstname %></a><br />
+		  	<div class="text-error"> <%= news.status %></div><br />
+			  </div>
+		 </td></tr></table>
 	  	<% news.comments.each do |comment|%>
-	  		<div class="text-warning"> <%= comment.body %></div><br />
+		  	<table><tr>
+		  		<td>
+			  		<div ><%= image_tag owner.avatar.url(:thumb), :height =>"50px", :width => "30px",
+			  		:style=> "padding-bottom: 20px;"%></div>
+		  		</td><td>
+			  		<div class="text-warning" style="padding-left: 20px;"> <%= comment.body %></div><br />
+			 </td></tr></table>
 	  	<%end%>
 
 			<%= form_for @comment, :url => comments_path do |f| %>
 			  	<%= f.text_area :body, :placeholder => "What you say?", :style=>"width: 500px; resize: none;", :rows=>"2", %><br />
-			  	<%= f.hidden_field :news_owner, :value => news.user_id %>
+			  	<%= f.hidden_field :news_id, :value => news.id %>
 			  	<%= f.submit "Post", :class => "btn btn-primary" %>
 		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
 	  	<%end%>
@@ -48,7 +61,7 @@
     <% end %>
 
 </td></tr></table>
-
+<div style="padding-left: 270px;" ><%= paginate @feeds %></div>
 <script type="text/javascript">
 
 (function($){

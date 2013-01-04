@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
+  def new
+  end
+
   def create
-    # comments = Comments.new(current_user, news_id, params[:comments])
-    # comments.create_comments
+    comments = Comment.create_comments(current_user, params[:comment][:news_id], params[:comment][:body])
+    redirect_to news_index_path
   end
 end
