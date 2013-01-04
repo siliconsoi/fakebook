@@ -1,0 +1,42 @@
+<table><tr><td>
+	<%= render  :partial => "partial/user_detail" %>
+</td><td>
+	<div class="span5">
+		<div class="well sidebar-nav">
+			<form class="form-search">
+			  <div class="input-prepend" style="margin-top: 13px;">
+			  	<button type="submit" class="btn">Search</button>
+			    <input type="text" class="span3 search-query" name="keyword">
+			  </div>
+			</form>
+	  	</div>
+  	</div>
+<br>
+<%if !@results.nil? %>
+	<% @results.each do |user| %>
+		<div class="span8">
+		  <div class="well sidebar-nav" >
+		  	<table>
+				<tr>
+					<td>
+					    <ul class="nav nav-list">
+					      <li><div><%= image_tag user.avatar.url(:thumb), :height =>"110px", :width => "110px"%></div></li>
+					    </ul>
+					</td><td>
+						<div class="text-info" > First name: <%= user.firstname %></div><br />
+						<div class="text-info" > Last name: <%= user.lastname %></div><br />
+						<div class="text-info" > Email: <%= user.email %></div><br />
+					</td><td>
+						<div style="padding-left: 100px;">
+						<input type='hidden' value=<%= user.id %> name="friend_id">
+						<%= link_to "Add", new_friendship_path, :class => "btn btn-small btn-danger" %>
+						</div>
+					</td>
+				</tr>
+			</table>
+		  </div><!--/.well -->
+		</div><!--/span-->
+
+	<%end%>
+<%end%>
+</td></tr></table>

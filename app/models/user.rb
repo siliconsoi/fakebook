@@ -38,13 +38,13 @@ class User < ActiveRecord::Base
   end
 
   def gen_sql(friendships)
-        fship = friendships.collect do |friendship|
+        friendships = friendships.collect do |friendship|
           "user_id = " + friendship.friend_id.to_s
         end
-        if fship.count > 0
-          fship.join(" or ") + " or user_id = " + self.id.to_s
+        if friendships.count > 0
+          friendships.join(" or ") + " or user_id = " + self.id.to_s
         else
-          fship.join(" or ") + "user_id = " + self.id.to_s
+          friendships.join(" or ") + "user_id = " + self.id.to_s
         end
   end
 
