@@ -28,8 +28,11 @@
 						<div class="text-info" > Email: <%= user.email %></div><br />
 					</td><td>
 						<div style="padding-left: 100px;">
-						<input type='hidden' value=<%= user.id %> name="friend_id">
-						<%= link_to "Add", new_friendship_path, :class => "btn btn-small btn-danger" %>
+
+						<%= form_for @friendship, :url => friendships_path do |f| %>
+							<input type='hidden' value=<%= user.id %> name="friend_id">
+						<%= f.submit "Add", :class => "btn btn-primary" %>
+						<%end%>
 						</div>
 					</td>
 				</tr>

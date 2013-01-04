@@ -38,9 +38,13 @@ class User < ActiveRecord::Base
   end
 
   def gen_sql(friendships)
+    # p 'T_______________________T'
+    # p friendships
+    # p '___________________________'
         friendships = friendships.collect do |friendship|
           "user_id = " + friendship.friend_id.to_s
         end
+
         if friendships.count > 0
           friendships.join(" or ") + " or user_id = " + self.id.to_s
         else
