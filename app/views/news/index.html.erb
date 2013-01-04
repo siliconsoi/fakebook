@@ -15,7 +15,7 @@
 
 	<div class="span8">
 	  <div class="well sidebar-nav">
-	  	Post your status here<br />
+	  	Post your status here<%=current_user.id%><br />
 	  	<%= form_for @news, :url => news_index_path do |f| %>
 		  	<%= f.text_area :status, :placeholder => text, :style=>" width: 500px; resize: none;", :rows=>"3", %><br />
 		  	<%= f.submit "Post", :class => "btn btn-primary" %>
@@ -29,7 +29,12 @@
 	  <div class="well sidebar-nav">
 
 	  	<a href="#"><%= User.find(news.user_id).firstname %></a><br />
-	  	<div > <%= news.status %></div><br />
+	  	<div class="text-error"> <%= news.status %></div><br />
+
+	  	<% news.comments.each do |comment|%>
+	  		<div class="text-warning"> <%= comment.body %></div><br />
+	  	<%end%>
+
 			<%= form_for @comment, :url => comments_path do |f| %>
 			  	<%= f.text_area :body, :placeholder => "What you say?", :style=>"width: 500px; resize: none;", :rows=>"2", %><br />
 			  	<%= f.hidden_field :news_owner, :value => news.user_id %>

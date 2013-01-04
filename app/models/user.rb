@@ -1,10 +1,8 @@
 class User < ActiveRecord::Base
   has_many :friendships
   has_many :news
-  has_many :users, :source => :friend, :through => :friendships
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+  has_many :users, :source => :friendship , :through => :friendships, :foreign_key => "friend_id"
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -18,7 +16,7 @@ class User < ActiveRecord::Base
                     :thumb  => "100x100",
                     :medium => "200x200",
                     :large => "400x400"},
-                    :default_url => "http://placehold.it/100&text=IMAGE",
+                    :default_url => "http://www.classtools.net/main_area/fakebook/icons/silhouette.png",
                     :url  => "images/users/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/assets/images/users/:id/:style/:basename.:extension"
 
