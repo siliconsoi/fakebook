@@ -46,9 +46,9 @@ namespace :fb do
 
     task :create_comments => :environment do
       puts "Creating Comments"
-      Comment.new({:user_id => 1, :body => 'So cool', :posts_id => 1}).save
-      Comment.new({:user_id => 2, :body => 'So good!!', :posts_id => 1}).save
-      Comment.new({:user_id => 2, :body => 'Exactly!!!', :posts_id => 2}).save
+      Comment.new({:user_id => 1, :body => 'So cool', :post_id => 1}).save
+      Comment.new({:user_id => 2, :body => 'So good!!', :post_id => 1}).save
+      Comment.new({:user_id => 2, :body => 'Exactly!!!', :post_id => 2}).save
     end
 
   end

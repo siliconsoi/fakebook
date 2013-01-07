@@ -8,8 +8,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    News.create_news(current_user, params[:news][:status])
-    redirect_to news_index_path
+    p params.inspect
+    Post.create_post(current_user, params[:posts][:status])
+    redirect_to posts_path
   end
 
 end

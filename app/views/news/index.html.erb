@@ -7,23 +7,23 @@
 <div class="span8">
 	  <div class="well sidebar-nav">
 	  	Post your status here!<br />
-	  	<%= form_for :posts, :url => posts_index_path do |f| %>
+	  	<%= form_for :post, :url => posts_index_path do |f| %>
 		  	<%= f.text_area :status, :placeholder => text, :style=>" width: 500px; resize: none;", :rows=>"3", %><br />
 		  	<%= f.submit "Post", :class => "btn btn-primary" %>
 		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
 	  	<%end%>
 	  </div>
 
-	<% @feeds.each do |news| %>
+	<% @feeds.each do |post| %>
 	  <div class="well">
 	  	<div class="user_post">
-			<%= image_tag news.user.avatar.url(:thumb), :class => 'user_post_avatar' %>
-			<a href="#"><%= news.user.firstname %>: </a>
-			<span><%= news.status %></span>
+			<%= image_tag post.user.avatar.url(:thumb), :class => 'user_post_avatar' %>
+			<a href="#"><%= post.user.firstname %>: </a>
+			<span><%= post.status %></span>
 		</div>
 
 		<ul class="user_post_comments">
-	  	<% news.comments.each do |comment|%>
+	  	<% post.comments.each do |comment|%>
 	  		<li class="user_post_comment">
 				<%= image_tag comment.user.avatar.url(:thumb), :class => 'user_comment_avatar' %>
 				<span><a href="#"><%= comment.user.firstname %> </a>:</span>
@@ -34,7 +34,7 @@
 
 		<%= form_for :comment, :url => comments_path do |f| %>
 		  	<%= f.text_area :body, :placeholder => "What you say?", :style=>"width: 500px; resize: none;", :rows=>"2", %><br />
-		  	<%= f.hidden_field :news_id, :value => news.id %>
+		  	<%= f.hidden_field :post_id, :value => post.id %>
 		  	<%= f.submit "Post", :class => "btn btn-primary" %>
 	  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
 	  	<%end%>

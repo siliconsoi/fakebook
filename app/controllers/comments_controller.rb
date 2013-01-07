@@ -4,6 +4,6 @@ class CommentsController < ApplicationController
 
   def create
     Comment.new(params[:comment].merge(:user => current_user)).save
-    redirect_to news_index_path
+    redirect_to posts_path
   end
 end

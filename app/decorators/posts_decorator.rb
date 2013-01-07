@@ -1,5 +1,5 @@
-class NewsDecorator < Draper::Base
-  decorates :news
+class PostsDecorator < Draper::Base
+  decorates :post
 
   def group_name
     model.agent_group ? model.agent_group.name : ''

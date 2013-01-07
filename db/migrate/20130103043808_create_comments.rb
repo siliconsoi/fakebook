@@ -3,11 +3,11 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
       t.references :user
       t.text :body
-      t.references :posts
+      t.references :post
 
       t.timestamps
     end
 
-    add_index :comments, :posts_id
+    add_index :comments, :post_id
   end
 end
