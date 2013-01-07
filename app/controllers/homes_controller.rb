@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
   def index
-    cuser = current_user.news
-    @news = cuser.new
+    cuser = current_user.posts
+    @post = cuser.new
   end
 
 

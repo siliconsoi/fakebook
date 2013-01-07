@@ -1,6 +1,6 @@
 Fakebook::Application.routes.draw do
 
-  root :to => 'news#index'
+  root :to => 'posts#index'
   devise_for :users
   resources :posts
   resources :comments,        :only => [:create, :destroy]

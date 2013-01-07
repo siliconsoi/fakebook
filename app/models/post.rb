@@ -6,11 +6,11 @@ class Post < ActiveRecord::Base
   validates :status, :presence => true,
                     :length => { :minimum => 1 }
 
-  def self.create_news(user, status)
-    news = News.new
-    news.user_id = user.id
-    news.status = status
-    news.save
+  def self.create_post(user, status)
+    post = Post.new
+    post.user_id = user.id
+    post.status = status
+    post.save
   end
 
 end

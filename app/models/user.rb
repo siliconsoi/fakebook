@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :friendships
-  has_many :news
-  has_many :users, :source => :friendship , :through => :friendships, :foreign_key => "friend_id"
+  has_many :posts
+  # has_many :users, :source => :friendship , :through => :friendships, :foreign_key => "friend_id"
   has_many :friends, :through => :friendships
 
   devise :database_authenticatable, :registerable,
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 
   def feed(friendships)
     sql = gen_sql(friendships)
-    News.where(sql)
+    Post.where(sql)
   end
 
   def gen_sql(friendships)
