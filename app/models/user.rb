@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :friendships
-  has_many :news
-  has_many :users, :source => :friendship , :through => :friendships, :foreign_key => "friend_id"
-  has_many :friends, :through => :friendships
+  has_many :posts
+  # has_many :users, :source => :friendship , :through => :friendships, :foreign_key => "friend_id"
+  has_many :friends, :through => :friendships, :foreign_key => "friend_id"
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

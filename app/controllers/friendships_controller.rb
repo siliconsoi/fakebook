@@ -13,8 +13,6 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    p 'T___________________________T'
-    p params.inspect
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     if @friendship.save
       flash[:notice] = "Added friend."

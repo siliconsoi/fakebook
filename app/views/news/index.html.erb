@@ -7,7 +7,7 @@
 <div class="span8">
 	  <div class="well sidebar-nav">
 	  	Post your status here!<br />
-	  	<%= form_for :news, :url => news_index_path do |f| %>
+	  	<%= form_for :posts, :url => posts_index_path do |f| %>
 		  	<%= f.text_area :status, :placeholder => text, :style=>" width: 500px; resize: none;", :rows=>"3", %><br />
 		  	<%= f.submit "Post", :class => "btn btn-primary" %>
 		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
