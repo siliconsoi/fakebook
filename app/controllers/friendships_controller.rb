@@ -1,15 +1,15 @@
 class FriendshipsController < ApplicationController
-  def new
-    p 'T___________________________T'
-    p params.inspect
-    @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
-    if @friendship.save
-      flash[:notice] = "Added friend."
-    else
-      flash[:error] = "Unable to add friend."
-    end
-      redirect_to root_url
-  end
+  # def new
+  #   p 'T___________________________T'
+  #   p params.inspect
+  #   @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
+  #   if @friendship.save
+  #     flash[:notice] = "Added friend."
+  #   else
+  #     flash[:error] = "Unable to add friend."
+  #   end
+  #   redirect_to root_url
+  # end
 
   def create
     p 'T___________________________T'

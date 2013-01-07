@@ -1,62 +1,51 @@
 <%text = "What\'s going on, "+@current_user.firstname %>
 
-<table><tr><td>
-
+<div class="user_detail span3">
 	<%= render  :partial => "partial/user_detail" %>
+</div>
 
-</td><td>
-
-	<div class="span8">
+<div class="span8">
 	  <div class="well sidebar-nav">
 	  	Post your status here!<br />
-	  	<%= form_for @news, :url => news_index_path do |f| %>
+	  	<%= form_for :news, :url => news_index_path do |f| %>
 		  	<%= f.text_area :status, :placeholder => text, :style=>" width: 500px; resize: none;", :rows=>"3", %><br />
 		  	<%= f.submit "Post", :class => "btn btn-primary" %>
 		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
 	  	<%end%>
-	  </div><!--/.well -->
-	</div><!--/span-->
+	  </div>
 
 	<% @feeds.each do |news| %>
-	<%owner = User.find(news.user_id)%>
-	<div class="span8">
-	  <div class="well sidebar-nav">
-	  	<table><tr>
-	  		<td>
-		  		<div ><%= image_tag owner.avatar.url(:thumb), :height =>"50px", :width => "50px",
-		  		:style=> "padding-bottom: 20px;" %></div>
-		  	</td><td>
-		  		<div style="padding-left: 20px;">
-			  	<a href="#"><%= owner.firstname %></a><br />
-		  	<div class="text-error"> <%= news.status %></div><br />
-			  </div>
-		 </td></tr></table>
-	  	<% news.comments.each do |comment|%>
-	  		<% commenter = User.find(comment.user_id) %>
-		  	<table><tr>
-		  		<td>
-			  		<div ><%= image_tag commenter.avatar.url(:thumb), :height =>"50px", :width => "30px",
-			  		:style=> "padding-bottom: 20px;"%></div>
-		  		</td><td>
-			  		<div class="text-warning" style="padding-left: 20px;">
-			  			<a href="#"><%= commenter.firstname %></a>: <%= comment.body %></div><br />
-			 </td></tr></table>
-	  	<%end%>
+	  <div class="well">
+	  	<div class="user_post">
+			<%= image_tag news.user.avatar.url(:thumb), :class => 'user_post_avatar' %>
+			<a href="#"><%= news.user.firstname %>: </a>
+			<span><%= news.status %></span>
+		</div>
 
-		<%= form_for @comment, :url => comments_path do |f| %>
+		<ul class="user_post_comments">
+	  	<% news.comments.each do |comment|%>
+	  		<li class="user_post_comment">
+				<%= image_tag comment.user.avatar.url(:thumb), :class => 'user_comment_avatar' %>
+				<span><a href="#"><%= comment.user.firstname %> </a>:</span>
+				<span><%= comment.body %></span>
+			</li>
+	  	<%end%>
+	  	</ul>
+
+		<%= form_for :comment, :url => comments_path do |f| %>
 		  	<%= f.text_area :body, :placeholder => "What you say?", :style=>"width: 500px; resize: none;", :rows=>"2", %><br />
 		  	<%= f.hidden_field :news_id, :value => news.id %>
 		  	<%= f.submit "Post", :class => "btn btn-primary" %>
 	  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
 	  	<%end%>
 
-	  </div><!--/.well -->
-	</div><!--/span-->
-      <br />
+	  </div>
     <% end %>
 
-</td></tr></table>
-<div style="padding-left: 270px;" ><%= paginate @feeds %></div>
+	<div style="padding-left: 270px;" ><%= paginate @feeds %></div>
+
+</div>
+
 <script type="text/javascript">
 
 (function($){

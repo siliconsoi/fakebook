@@ -1,10 +1,7 @@
 class NewsController < ApplicationController
 
   def index
-    feeds = current_user.feed(current_user.friendships)
-    @feeds = Kaminari.paginate_array(feeds).page(params[:page]).per(3)
-    @news = News.new
-    @comment = Comment.new
+    @feeds = current_user.feed(current_user.friendships).page(params[:page]).per(3)
   end
 
   def new

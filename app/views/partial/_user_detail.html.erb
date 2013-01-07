@@ -1,8 +1,4 @@
-<div class="span3">
-  <div class="well sidebar-nav" style=" height : 600px;">
-    <ul class="nav nav-list">
-      <li class="nav-header">Hello! <%= current_user.firstname %></li>
-      <li><div><%= image_tag current_user.avatar.url(:medium), :id=>"display"%></div></li>
-    </ul>
-  </div><!--/.well -->
-</div><!--/span-->
+<div class="well" style="height: 600px;">
+	<h1>Hello! <%= current_user.firstname %></h1>
+	<%= image_tag current_user.avatar.url(:medium), :id=>"display"%>
+</div>

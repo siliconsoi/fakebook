@@ -5,5 +5,6 @@ Fakebook::Application.routes.draw do
   resources :news
   resources :comments,        :only => [:create, :destroy]
   resources :find_friends,    :only => [:index]
-  resources :friendships,     :only => [:create, :destroy, :index, :new]
+  resources :friendships,     :only => [:create, :destroy, :index]
+
 end
