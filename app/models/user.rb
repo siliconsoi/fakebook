@@ -27,25 +27,14 @@ class User < ActiveRecord::Base
   def self.search(search)
       return [] unless search
       User.where('firstname like ? or lastname like ? or email like ?', search, search, search)
-    #   # @results = current_user.find_new_friends(params[:keyword])
-    # end
-    # if search == nil
-    #   self.all
-    # else
-    #   search_condition = "%" + search + "%"
-    #   self.find(:all, :conditions => ['email LIKE ? OR firstname LIKE ? OR lastname LIKE ?', search_condition, search_condition, search_condition])
-    # end
   end
 
   def feed(friendships)
     sql = gen_sql(friendships)
-    Post.where(sql)
+    Post.where(sql).order('created_at DESC')
   end
 
   def gen_sql(friendships)
-    # p 'T_______________________T'
-    # p friendships
-    # p '___________________________'
         friendships = friendships.collect do |friendship|
           "user_id = " + friendship.friend_id.to_s
         end

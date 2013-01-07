@@ -8,7 +8,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    p params.inspect
     Post.create_post(current_user, params[:posts][:status])
     redirect_to posts_path
   end

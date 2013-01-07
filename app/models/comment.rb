@@ -6,4 +6,12 @@ class Comment < ActiveRecord::Base
   validates :body, :presence => true,
                   :length => { :minimum => 1 }
 
+  def self.for_user(user, comm)
+      comment = Comment.new
+      comment.user_id = user.id
+      comment.body = comm[:body]
+      comment.post_id = comm[:post_id]
+      comment.save
+  end
+
 end
