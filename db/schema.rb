@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(:version => 20130104015443) do
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.text     "body"
-    t.integer  "news_id"
+    t.integer  "posts_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "comments", ["news_id"], :name => "index_comments_on_news_id"
+  add_index "comments", ["posts_id"], :name => "index_comments_on_posts_id"
 
   create_table "find_friends", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20130104015443) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "news", :force => true do |t|
+  create_table "posts", :force => true do |t|
     t.text     "status"
     t.integer  "user_id"
     t.datetime "created_at", :null => false

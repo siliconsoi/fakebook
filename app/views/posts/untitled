@@ -1,0 +1,46 @@
+<%text = "What\'s going on, @current_user.first_name" %>
+
+<table><tr><td>
+
+	<div class="span3">
+	  <div class="well sidebar-nav" style=" height : 600px;">
+	    <ul class="nav nav-list">
+	      <li class="nav-header">Hello! @current_user.first_name</li>
+	      <li>@display picture </li>
+	    </ul>
+	  </div><!--/.well -->
+	</div><!--/span-->
+
+</td><td>
+
+	<div class="span8">
+	  <div class="well sidebar-nav">
+	  	Post your status here<br />
+	  	<input type="textarea" placeholder = "<%= text %>" style=" width : 500px;" /><br /><br />
+	  	<input type="button" class="btn btn-primary" value="Post">
+	  	<input type="button" class="btn clear" value="clear">
+	  </div><!--/.well -->
+	</div><!--/span-->
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+	<% @news.each do |news| %>
+	<div class="span8">
+	  <div class="well sidebar-nav">
+	  	<a href="#"><%= news.first_name %></a><br />
+	  	<div > <%= news.text %> </div><br />
+	  	<% news.comments.each do |comment| %>
+
+	  		<%= comment.first_name %> : <%= comment.text %><br />
+    	<% end %>
+	  	<input type="textarea" placeholder = "what you say " style=" width : 500px;" /><br />
+	  	<input type="button" class="btn btn-primary" value="Post">
+	  </div><!--/.well -->
+	</div><!--/span-->
+      <br />
+    <% end %>
+
+    <% a.each do |aa| %>
+	<%= News.find_by_user_id(aa.friend_id).status %>
+<% end %>
+
+</td></tr></table>
+

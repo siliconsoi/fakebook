@@ -11,7 +11,7 @@ namespace :fb do
     task :default => [
       :create_users,
       :create_friendships,
-      :create_news,
+      :create_posts,
       :create_comments
     ]
 
@@ -35,20 +35,20 @@ namespace :fb do
       Friendship.new({:friend_id => 1, :user_id => 2}).save
     end
 
-    task :create_news => :environment do
-      puts "Creating News"
-      News.new({:status => 'I am number 1', :user_id => 1}).save
-      News.new({:status => 'I am number 2', :user_id => 2}).save
-      News.new({:status => 'I am number 2 again', :user_id => 2}).save
-      News.new({:status => 'I am number 3', :user_id => 3}).save
-      News.new({:status => 'I am number 4', :user_id => 4}).save
+    task :create_posts => :environment do
+      puts "Creating Posts"
+      Post.new({:status => 'I am number 1', :user_id => 1}).save
+      Post.new({:status => 'I am number 2', :user_id => 2}).save
+      Post.new({:status => 'I am number 2 again', :user_id => 2}).save
+      Post.new({:status => 'I am number 3', :user_id => 3}).save
+      Post.new({:status => 'I am number 4', :user_id => 4}).save
     end
 
     task :create_comments => :environment do
       puts "Creating Comments"
-      Comment.new({:user_id => 1, :body => 'So cool', :news_id => 1}).save
-      Comment.new({:user_id => 2, :body => 'So good!!', :news_id => 1}).save
-      Comment.new({:user_id => 2, :body => 'Exactly!!!', :news_id => 2}).save
+      Comment.new({:user_id => 1, :body => 'So cool', :posts_id => 1}).save
+      Comment.new({:user_id => 2, :body => 'So good!!', :posts_id => 1}).save
+      Comment.new({:user_id => 2, :body => 'Exactly!!!', :posts_id => 2}).save
     end
 
   end

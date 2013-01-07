@@ -1,0 +1,60 @@
+<%text = "What\'s going on, "+@current_user.firstname %>
+
+<div class="user_detail span3">
+	<%= render  :partial => "partial/user_detail" %>
+</div>
+
+<div class="span8">
+	  <div class="well sidebar-nav">
+	  	Post your status here!<br />
+	  	<%= form_for :news, :url => news_index_path do |f| %>
+		  	<%= f.text_area :status, :placeholder => text, :style=>" width: 500px; resize: none;", :rows=>"3", %><br />
+		  	<%= f.submit "Post", :class => "btn btn-primary" %>
+		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
+	  	<%end%>
+	  </div>
+
+	<% @feeds.each do |news| %>
+	  <div class="well">
+	  	<div class="user_post">
+			<%= image_tag news.user.avatar.url(:thumb), :class => 'user_post_avatar' %>
+			<a href="#"><%= news.user.firstname %>: </a>
+			<span><%= news.status %></span>
+		</div>
+
+		<ul class="user_post_comments">
+	  	<% news.comments.each do |comment|%>
+	  		<li class="user_post_comment">
+				<%= image_tag comment.user.avatar.url(:thumb), :class => 'user_comment_avatar' %>
+				<span><a href="#"><%= comment.user.firstname %> </a>:</span>
+				<span><%= comment.body %></span>
+			</li>
+	  	<%end%>
+	  	</ul>
+
+		<%= form_for :comment, :url => comments_path do |f| %>
+		  	<%= f.text_area :body, :placeholder => "What you say?", :style=>"width: 500px; resize: none;", :rows=>"2", %><br />
+		  	<%= f.hidden_field :news_id, :value => news.id %>
+		  	<%= f.submit "Post", :class => "btn btn-primary" %>
+	  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
+	  	<%end%>
+
+	  </div>
+    <% end %>
+
+	<div style="padding-left: 270px;" ><%= paginate @feeds %></div>
+
+</div>
+
+<script type="text/javascript">
+
+(function($){
+	$('.clear_text').on('click', clear);
+
+	function clear(){
+		$('textarea').val('')
+	}
+
+}(jQuery));
+
+</script>
