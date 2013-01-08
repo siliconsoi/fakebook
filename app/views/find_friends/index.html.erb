@@ -29,9 +29,9 @@
 				</td><td>
 					<div style="padding-left: 100px;">
 
-					<%= form_for user, :url => friendships_path do |f| %>
+					<%= form_for user, :url => new_friendship_path do |f| %>
 						<input type='hidden' value=<%= user.id %> name="friend_id">
-					<%= f.submit "Add", :class => "btn btn-primary" %>
+					<%= f.submit "+1 Add friend", :class => "btn btn-primary" %>
 					<%end%>
 					</div>
 				</td>
