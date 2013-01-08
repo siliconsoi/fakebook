@@ -1,0 +1,7 @@
+<% post.comments.each do |comment|%>
+	<li class="user_post_comment">
+		<%= image_tag comment.user.avatar.url(:thumb), :class => 'user_comment_avatar' %>
+		<span><a href="#"><%= comment.user.firstname %> </a>:</span>
+		<span><%= comment.body %></span>
+	</li>
+<%end%>
