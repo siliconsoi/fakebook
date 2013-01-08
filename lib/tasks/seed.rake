@@ -25,6 +25,8 @@ namespace :fb do
                   :password => 'test123test', :password_confirmation => 'test123test'}).save
       User.new({:email => 'member4@fakebook.com', :firstname => 'Lady', :lastname => 'Gaga',
                   :password => 'test123test', :password_confirmation => 'test123test'}).save
+      User.new({:email => 'member5@fakebook.com', :firstname => 'Bruce', :lastname => 'Lee',
+                  :password => 'test123test', :password_confirmation => 'test123test'}).save
     end
 
     task :create_friendships => :environment do
@@ -42,6 +44,7 @@ namespace :fb do
       Post.new({:status => 'I am number 2 again', :user_id => 2}).save
       Post.new({:status => 'I am number 3', :user_id => 3}).save
       Post.new({:status => 'I am number 4', :user_id => 4}).save
+      Post.new({:status => 'I am number 5', :user_id => 5}).save
     end
 
     task :create_comments => :environment do

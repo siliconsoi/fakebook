@@ -1,18 +1,17 @@
 class FriendshipsController < ApplicationController
 
   def new
+    # p '=========================================='
     # @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     # if @friendship.save
     #   flash[:notice] = "Added friend."
-    #   redirect_to "http://www.facebook.com"
     # else
     #   flash[:error] = "Unable to add friend."
-    #   redirect_to "http://www.google.com"
     # end
-    #   # redirect_to root_url
+    #   redirect_to root_url
   end
 
-  def create-
+  def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     if @friendship.save
       flash[:notice] = "Added friend."

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :friendships
   has_many :posts
-  has_many :friends, :source => :friendship , :through => :friendships, :foreign_key => "friend_id"
+  has_many :friends, :source => :friendship , :through => :friendships
   # has_many :friends, :through => :friendships
 
   devise :database_authenticatable, :registerable,
@@ -25,8 +25,11 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/jpg']
 
   def self.search(search)
+      # User.find_by_sql(["select * from friendships where user_id = ?", user.id])
+      # # # User.where('firstname like ? or lastname like ? or email like ?', search, search, search)
       return [] unless search
-      User.where('firstname like ? or lastname like ? or email like ?', search, search, search)
+      k = "%#{search}%"
+      User.where("firstname LIKE ? or lastname LIKE ? or email LIKE ?", k, k, k)
   end
 
   def feed(friendships)
