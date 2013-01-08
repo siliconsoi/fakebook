@@ -13,3 +13,32 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+(function($){
+	$('.clear_text').on('click', clear);
+	$('#create_post').on('submit', create_post);
+
+	function clear(){
+		$('textarea').val('');
+	}
+
+	function create_post(evt) {
+		var $form = $(evt.currentTarget);
+
+		evt.preventDefault();
+
+		$.ajax({
+			type: $form.attr('method'),
+			url: $form.attr('action') + '.json',
+			data: $form.serialize(),
+			success: function(response){ update_feed(response.post); },
+			error: function() { console.log(arguments); }
+		});
+		clear();
+	}
+
+	function update_feed(post) {
+
+	}
+
+}(jQuery));

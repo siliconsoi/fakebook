@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
     post.user_id = user.id
     post.status = status
     post.save
+    post
   end
 
 end

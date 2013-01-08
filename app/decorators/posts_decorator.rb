@@ -9,4 +9,20 @@ class PostsDecorator < Draper::Base
     model.agent_category ? model.agent_category.name : ''
   end
 
+  def author
+    {}
+  end
+
+  def comments
+    []
+  end
+
+  def as_json
+    {
+      :id => model.id,
+      :author => author,
+      :status => model.status,
+      :comments => comments
+    }
+  end
 end
