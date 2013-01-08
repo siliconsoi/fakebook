@@ -1,19 +1,18 @@
-<table><tr><td>
+<div class="user_detail span3">
 	<%= render  :partial => "partial/user_detail" %>
-</td><td>
+</div>
 	<div class="span5">
 		<div class="well sidebar-nav">
 			<form class="form-search">
 			  <div class="input-prepend" style="margin-top: 13px;">
-			  	<button type="submit" class="btn">Search</button>
+			  	<button type="submit" class="btn btn-search">Search</button>
 			    <input type="text" class="span3 search-query" name="keyword">
 			  </div>
 			</form>
 	  	</div>
   	</div>
-<br>
-<% @results.each do |user| %>
 	<div class="span8">
+<% @results.each do |user| %>
 	  <div class="well sidebar-nav" >
 	  	<table>
 			<tr>
@@ -22,9 +21,11 @@
 				      <li><div><%= image_tag user.avatar.url(:thumb), :height =>"110px", :width => "110px"%></div></li>
 				    </ul>
 				</td><td>
-					<div class="text-info" > First name: <%= user.firstname %></div><br />
-					<div class="text-info" > Last name: <%= user.lastname %></div><br />
-					<div class="text-info" > Email: <%= user.email %></div><br />
+					<div class="text-info" >
+						 <span><h1>First name: <%= user.firstname %></h1></span>
+					     <span><h1>Last name: <%= user.lastname %></h1></span>
+					     <span><h1>Email: <%= user.email %></h1></span>
+					</div>
 				</td><td>
 					<div style="padding-left: 100px;">
 
@@ -37,6 +38,5 @@
 			</tr>
 		</table>
 	  </div><!--/.well -->
-	</div><!--/span-->
 <%end%>
-</td></tr></table>
+	</div>

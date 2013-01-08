@@ -1,6 +1,6 @@
-<table><tr><td>
+<div class="user_detail span3">
 	<%= render  :partial => "partial/user_detail" %>
-</td><td>
+</div>
 
 <% @friends.each do |user| %>
 	<div class="span8">
@@ -12,9 +12,11 @@
 				      <li><div><%= image_tag user.avatar.url(:medium) %></div></li>
 				    </ul>
 				</td><td>
-					<div class="text-info" > First name: <%= user.firstname %></div><br />
-					<div class="text-info" > Last name: <%= user.lastname %></div><br />
-					<div class="text-info" > Email: <%= user.email %></div><br />
+					<div class="text-info" >
+					 <span><h1>First name: <%= user.firstname %></h1></span>
+				     <span><h1>Last name: <%= user.lastname %></h1></span>
+				     <span><h1>Email: <%= user.email %></h1></span>
+					</div>
 				</td><td>
 					<div style="padding-left: 100px;">
 					<%= link_to "Delete", friendship_path(user), :method => :delete, :confirm => 'Are you sure?', :class => "btn btn-small btn-danger" %>

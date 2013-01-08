@@ -45,3 +45,20 @@
 .user_post_comment {
 	margin-top: 5px;
 }
+
+.btn-search {
+	margin-top: -1px;
+}
+
+.text-info h1 {
+	color: #4052AD;
+	font-size: 13px;
+	margin-top: -5px;
+	padding-bottom: 0px;
+	line-height: 15px;
+}
+
+.span8 {
+	margin-bottom: -12px;
+}
+
