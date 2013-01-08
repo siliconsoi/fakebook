@@ -43,7 +43,15 @@
           </td><td>
           <%= f.password_field :password_confirmation %>
         </td></tr><tr><td>
-          <%= f.submit "Update", :class => "btn btn-primary" %>
+          <%= f.label :gender %>
+          </td><td>
+          <%= f.select :gender, options_for_select([["",""],["Male", "male"],["Female", "female"]])%>
+        </td></tr><tr><td>
+          <%= f.label :birthdate %>
+          </td><td>
+          <%= f.date_select :birthdate,:order => [:day, :month, :year], :start_year => 1920, :end_year => 2013 %>
+        </td></tr><tr><td>
+          <%= f.submit "Register", :class => "btn btn-primary" %>
           </td></tr></table>
         <% end %>
       </div>

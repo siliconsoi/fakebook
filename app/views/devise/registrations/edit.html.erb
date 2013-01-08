@@ -47,6 +47,14 @@
           </td><td>
           <%= f.password_field :current_password %>
         </td></tr><tr><td>
+          <%= f.label :gender %>
+          </td><td>
+          <%= f.select :gender, options_for_select([["",""],["Male", "male"],["Female", "female"]], :selected => current_user.gender) %>
+        </td></tr><tr><td>
+          <%= f.label :birthdate %>
+          </td><td>
+          <%= f.date_select :birthdate,{:order => [:day, :month, :year]} %>
+        </td></tr><tr><td>
           <%= f.submit "Update", :class => "btn btn-primary" %>
           </td></tr></table>
         <% end %>

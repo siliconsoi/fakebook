@@ -18,15 +18,15 @@ namespace :fb do
     task :create_users => :environment do
       puts "Creating Users"
       User.new({:email => 'member1@fakebook.com', :firstname => 'Tony', :lastname => 'Stark',
-                  :password => 'test123test', :password_confirmation => 'test123test'}).save
+                  :password => 'test123test', :password_confirmation => 'test123test', :gender => 'male', :birthdate => '1975-01-18'}).save
       User.new({:email => 'member2@fakebook.com', :firstname => 'Bruce', :lastname => 'Wayne',
-                  :password => 'test123test', :password_confirmation => 'test123test'}).save
+                  :password => 'test123test', :password_confirmation => 'test123test', :gender => 'male', :birthdate => '1977-02-20'}).save
       User.new({:email => 'member3@fakebook.com', :firstname => 'John', :lastname => 'Doe',
-                  :password => 'test123test', :password_confirmation => 'test123test'}).save
+                  :password => 'test123test', :password_confirmation => 'test123test', :gender => 'male', :birthdate => '1956-03-25'}).save
       User.new({:email => 'member4@fakebook.com', :firstname => 'Lady', :lastname => 'Gaga',
-                  :password => 'test123test', :password_confirmation => 'test123test'}).save
+                  :password => 'test123test', :password_confirmation => 'test123test', :gender => 'female', :birthdate => '1985-11-08'}).save
       User.new({:email => 'member5@fakebook.com', :firstname => 'Bruce', :lastname => 'Lee',
-                  :password => 'test123test', :password_confirmation => 'test123test'}).save
+                  :password => 'test123test', :password_confirmation => 'test123test', :gender => 'male', :birthdate => '1925-12-28'}).save
     end
 
     task :create_friendships => :environment do
