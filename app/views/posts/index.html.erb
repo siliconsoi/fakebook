@@ -12,11 +12,14 @@
 	  </div>
 
 	<% @feeds.each do |post| %>
-	  <div class="well">
+	  <div class="well cwell">
 	  	<div class="user_post">
 			<%= image_tag post.user.avatar.url(:thumb), :class => 'user_post_avatar' %>
 			<a href="#"><%= post.user.firstname %>: </a>
 			<span><%= post.status %></span>
+			<div>
+				<span><%="#{time_ago_in_words(post.created_at)} ago "%></span>
+			</div>
 		</div>
 
 	  	<% post.comments.each do |comment|%>
