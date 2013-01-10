@@ -1,0 +1,6 @@
+<%= form_for :comment, :url => comments_path do |f| %>
+    <%= f.text_area :body, :placeholder => "What you say?", :style=>"width: 500px; resize: none;", :rows=>"2", %><br />
+    <%= f.hidden_field :post_id, :value => post.id %>
+    <%= f.submit "Post", :class => "btn btn-primary" %>
+  <span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
+<%end%>

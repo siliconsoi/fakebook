@@ -1,0 +1,10 @@
+<% post.comments.each do |comment|%>
+	<div class="comments" >
+		<%= image_tag comment.user.avatar.url(:thumb), :class => 'user_comment_avatar' %>
+			<span><a href="#"><%= comment.user.firstname %> </a>:</span>
+			<span><%= comment.body %></span>
+		<div>
+			<span><%="#{time_ago_in_words(comment.created_at)} ago "%></span>
+		</div>
+	</div>
+<%end%>

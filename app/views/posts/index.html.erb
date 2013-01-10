@@ -1,61 +1,14 @@
-<%text = "What\'s going on, "+@current_user.firstname %>
-
-
 <div class="span8">
-	  <div class="well sidebar-nav">
-	  	Post your status here!<br />
-	  	<%= form_for :posts, :url => posts_path do |f| %>
-		  	<%= f.text_area :status, :placeholder => text, :style=>" width: 500px; resize: none;", :rows=>"3", %><br />
-		  	<%= f.submit "Post", :class => "btn btn-primary" %>
-		  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
-	  	<%end%>
-	  </div>
+	<div class="well sidebar-nav">
+		<%= render :partial => "partial/new_post" %>
+	</div>
 
-	<% @feeds.each do |post| %>
-	  <div class="well cwell">
-	  	<div class="user_post">
-			<%= image_tag post.user.avatar.url(:thumb), :class => 'user_post_avatar' %>
-			<a href="#"><%= post.user.firstname %>: </a>
-			<span><%= post.status %></span>
-			<div>
-				<span><%="#{time_ago_in_words(post.created_at)} ago "%></span>
-			</div>
-		</div>
+	<div id="posts">
+		<%= render :partial => 'partial/post', :locals => { :posts => @feeds } %>
+	</div>
 
-	  	<% post.comments.each do |comment|%>
-	  		<div class="comments" >
-				<%= image_tag comment.user.avatar.url(:thumb), :class => 'user_comment_avatar' %>
-				<span><a href="#"><%= comment.user.firstname %> </a>:</span>
-					<span><%= comment.body %></span>
-				<div>
-				<span><%="#{time_ago_in_words(comment.created_at)} ago "%></span>
-				</div>
-			</div>
-	  	<%end%>
-
-		<%= form_for :comment, :url => comments_path do |f| %>
-		  	<%= f.text_area :body, :placeholder => "What you say?", :style=>"width: 500px; resize: none;", :rows=>"2", %><br />
-		  	<%= f.hidden_field :post_id, :value => post.id %>
-		  	<%= f.submit "Post", :class => "btn btn-primary" %>
-	  	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>
-	  	<%end%>
-
-	  </div>
-    <% end %>
-
-	<div style="padding-left: 270px;" ><%= paginate @feeds %></div>
-
+	<div style="padding-left: 270px;" >
+		<a href="/posts?page=<%=@next_page%>" id="more_posts" class="btn btn-primary">Moooore</a>
+	</div>
 </div>
 
-<script type="text/javascript">
-
-(function($){
-	$('.clear_text').on('click', clear);
-
-	function clear(){
-		$('textarea').val('')
-	}
-
-}(jQuery));
-
-</script>

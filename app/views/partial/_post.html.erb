@@ -1,0 +1,10 @@
+<% posts.each do |post| %>
+	<div class="well cwell">
+		<%= render :partial => "partial/poster_details", :locals => {:post => post} %>
+		<ul class="comments">
+			<%= render :partial => "partial/each_comment", :locals => {:post => post} %>
+		</ul>
+		<%= render :partial => "partial/form_for_comment", :locals => {:post => post} %>
+	</div>
+<% end %>
+

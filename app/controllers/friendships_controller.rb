@@ -27,7 +27,6 @@ class FriendshipsController < ApplicationController
     @friends = current_user.friendships.collect do |friendship|
       User.find(friendship.friend_id)
     end
-
   end
 
 end
