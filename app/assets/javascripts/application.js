@@ -64,3 +64,28 @@ function more_posts(evt) {
 		$('#more_posts').attr('href', response.next_page);
 	}
 }(jQuery));
+
+
+
+(function($){
+	$('#create_comment').on('submit', create_comment);
+
+	function create_comment(evt) {
+		var $form = $(evt.currentTarget);
+
+		evt.preventDefault();
+
+		// $.ajax({
+		// 	type: $form.attr('method'),
+		// 	url: $form.attr('action') + '.json',
+		// 	data: $form.serialize(),
+		// 	success: update_comment,
+		// 	error: function() { console.log(arguments); }
+		// });
+		// $('textarea').val('');
+	}
+
+	function update_coment(response) {
+		// $('#posts').prepend(response.post);
+	}
+}(jQuery));
