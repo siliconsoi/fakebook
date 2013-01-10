@@ -11,7 +11,8 @@
   <div class="navbar-inner">
     <a class="brand" href="#">Fakebook</a>
     <ul class="nav">
-      <li><%= link_to 'Home', posts_path %></li>
+
+      <li><%= link_to 'Home', signed_in? ? (current_user.role.id == 3 ? admins_path : posts_path) : posts_path  %></li>
       <li><%= link_to 'Manage Account', edit_user_registration_path %></li>
       <li><%= link_to 'Manage Friends', friendships_path %></li>
       <li><%= link_to 'Find Friends', find_friends_path %></li>
@@ -20,6 +21,13 @@
     </ul>
   </div>
 </div>
+<% if signed_in? %>
+    <% if !request.path.include?('/users/edit') %>
+      <div class="user_detail span3">
+        <%= render  :partial => "partial/user_detail" %>
+      </div>
+    <% end %>
+<% end %>
 
 	<div class="container-fluid">
 		<%= flash[:message] %>

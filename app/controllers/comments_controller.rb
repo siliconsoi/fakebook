@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # Comment.new(params[:comment].merge(:user => current_user)).save
-    comment = Comment.new(params[:comment].merge(:user => current_user)).save
+    comment = Comment.for_user(current_user, params[:comment])
     respond_to do |format|
       format.html { redirect_to posts_path }
       format.json do
@@ -13,5 +12,10 @@ class CommentsController < ApplicationController
         render :json => {:post => content }
       end
     end
+  end
+
+  def destroy
+    Comment.find(params[:id]).delete
+    redirect_to posts_path
   end
 end

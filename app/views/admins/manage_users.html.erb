@@ -1,0 +1,42 @@
+<div class="span8">
+	<div class="well sidebar-nav" style="width:790px;" >
+		<h3>Manage Users</h3>
+		<form>
+			<div class="input-append">
+			  <input class="span2" name="keyword" type="text">
+			  <button type="submit" class="btn" type="button">Search</button>
+			</div>
+		</form>
+		<table class="table table-condensed">
+			<thead>
+			    <tr>
+			      <th>Firstname</th>
+			      <th>Lastname</th>
+			      <th>Email</th>
+			      <th>Age</th>
+			      <th>Gender</th>
+			      <th>Status</th>
+			      <th>Register date</th>
+			      <th>Edit</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<% @users.each do |user|%>
+			    <tr>
+			      <td><%= user.firstname %></td>
+			      <td><%= user.lastname %></td>
+			      <td><%= user.email %></td>
+			      <td><%= (Time.now().year - user.birthdate.year) %></td>
+			      <td><%= user.gender %></td>
+			      <td><%= Role.find(user.role.id).name %></td>
+			      <td><%= user.created_at.strftime("%d/%m/%Y") %></td>
+			      <td><%= link_to "Edit", edit_manage_users_path(user), :class => "btn btn-small btn-warning"%></td>
+			    </tr>
+			   	<% end %>
+	  		   </tbody>
+		</table>
+	</div>
+
+		<div style="padding-left: 270px;" ><%= paginate @users %></div>
+
+</div>
