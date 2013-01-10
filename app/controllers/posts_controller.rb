@@ -1,30 +1,41 @@
 class PostsController < ApplicationController
 
-def index
-  per_page = 3
+  def index
+    per_page = 3
+    current_page = params[:page] ? params[:page].to_i : 1
+    next_page = current_page + 1
+
     if params[:page].nil?
       @feeds = Feed.new(current_user).posts.page(1).per(per_page)
+      @next_page = params[:page] ? params[:page] + 1 : 2
     else
-      @feeds = Feed.new(current_user).posts.page(params[:page]).per(per_page) do |feeds|
-        !feeds.empty? {|feeds| more_feeds(feeds)}
-        feeds.empty? {|feeds| more_feeds(feeds)}
+      more_posts = Feed.new(current_user).posts.page(params[:page]).per(per_page)
+      respond_to do |format|
+        format.html { redirect_to posts_path }
+        format.json do
+          self.formats = [:html]
+          content = render_to_string :partial => 'partial/post', :locals => {
+            :next_page => params[:page] ? params[:page].to_i + 1 : 2,
+            :posts => more_posts}
+          render :json => {:post => content, :next_page => "/posts?page=#{params[:page].to_i + 1}"}
+        end
       end
     end
-    @next_page = Feed.new(current_user).posts.page(params[:page].to_i+2).per(per_page)
-  end
-
-  def new
   end
 
   def create
     post = Post.create_post(current_user, params[:posts][:status])
     respond_to do |format|
       format.html { redirect_to posts_path }
-      format.json { render :json => {:post => post.as_json} }
+      format.json do
+        self.formats = [:html]
+        content = render_to_string :partial => 'partial/post', :locals => {:posts => [post]}
+        render :json => {:post => content }
+      end
     end
   end
 
-  def more_feeds(feeds)
+  def show
 
   end
 
