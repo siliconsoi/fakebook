@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
   protected
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      return posts_path
+      role = RoleUser.find_by_user_id(current_user.id).role_id
+      if role == 3
+        return admins_path
+      else
+        return posts_path
+      end
     else
       'http://www.google.com'
     end

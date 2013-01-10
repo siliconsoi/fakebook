@@ -1,4 +1,11 @@
+require 'role_user'
+require "role"
+
 class User < ActiveRecord::Base
+  belongs_to :role
+  has_one :role_user
+  has_one :role, :through => :role_user
+
   has_many :friendships
   has_many :posts
   has_many :friends, :through => :friendships
@@ -22,11 +29,16 @@ class User < ActiveRecord::Base
                     :url  => "images/users/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/assets/images/users/:id/:style/:basename.:extension"
 
-  validates :firstname, :length => { :minimum => 2 }
-  validates :lastname, :length => { :minimum => 2 }
-  validates :gender, :inclusion => { :in => [true, false] }
+  validates :firstname, :length => { :minimum => 1 }
+  validates :lastname, :length => { :minimum => 1 }
+  validates :gender, :inclusion => { :in => ['male', 'female'] }
   validates_attachment_size :avatar, :less_than => 1.megabytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/jpg']
+
+
+  def add_role(role_name)
+    RoleUser.new({:user_id => self.id, :role_id => Role.find_by_name(role_name).id}).save
+  end
 
   def self.search(search)
       return [] unless search

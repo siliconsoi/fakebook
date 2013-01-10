@@ -1,9 +1,7 @@
-<div class="user_detail span3">
-	<%= render  :partial => "partial/user_detail" %>
-</div>
 
+
+<div class="span8">
 <% @friends.each do |user| %>
-	<div class="span8">
 	  <div class="well sidebar-nav" >
 	  	<table>
 			<tr>
@@ -16,6 +14,7 @@
 					 <span><h1>First name: <%= user.firstname %></h1></span>
 				     <span><h1>Last name: <%= user.lastname %></h1></span>
 				     <span><h1>Email: <%= user.email %></h1></span>
+				     <span><h1>Age: <%=Time.new.utc.to_date.year - user.birthdate.year %></h1>
 					</div>
 				</td><td>
 					<div style="padding-left: 100px;">
@@ -25,8 +24,5 @@
 			</tr>
 		</table>
 	  </div><!--/.well -->
-	</div><!--/span-->
-
 <%end%>
-
-</td></tr></table>
+</div><!--/span-->
