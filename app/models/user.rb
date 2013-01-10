@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email,:avatar ,:firstname, :lastname, :password, :password_confirmation, :gender, :birthdate, :remember_me, :avatar_file_name,
-                  :avatar_content_type, :avatar_file_size, :avatar_updated_at
+                  :avatar_content_type, :avatar_file_size, :avatar_updated_at, :role
   # Avatar
   has_attached_file :avatar,
                     :styles =>{
