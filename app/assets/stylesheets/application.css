@@ -75,3 +75,17 @@
 	width: 514px;
 }
 
+.post-time {
+	color: #B5AFAF;
+	font-size: 10px;
+	margin-left: 55px;
+	margin-top: -15px;
+}
+
+.comment-time {
+	color: #B5AFAF;
+	font-size: 10px;
+	margin-left: 35px;
+	margin-top: -10px;
+}
+
