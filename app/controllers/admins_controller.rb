@@ -1,6 +1,5 @@
 class AdminsController < ApplicationController
 
-
   def manage_users
     find_user = params[:keyword].nil? ? (User.all) : (User.search(params[:keyword]).to_a)
     @users = Kaminari.paginate_array(find_user).page(params[:page]).per(50)

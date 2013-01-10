@@ -1,3 +1,4 @@
+<% if RoleUser.find_by_user_id(current_user.id).role_id == 3%>
 <div class="span8">
 	<div class="well sidebar-nav" >
 		<h2>Manage Part</h2>
@@ -6,3 +7,6 @@
 		<%= link_to "Manage Comment", manage_comments_path, :class => "btn btn-info"%>
 	</div>
 </div>
+<% else %>
+	"fsdfsfd"
+<% end %>
