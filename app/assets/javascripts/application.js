@@ -22,34 +22,48 @@
 	}
 }(jQuery));
 
-
 (function($){
-	$('#create_post').on('submit', create_post);
+	$('.create_action').on('submit', create_action);
 
-	function create_post(evt) {
+	function create_action(evt) {
 		var $form = $(evt.currentTarget);
 
-		evt.preventDefault();
+		evt.preventDefault($form.attr('action'));
 
 		$.ajax({
-			type: $form.attr('method'),
-			url: $form.attr('action') + '.json',
-			data: $form.serialize(),
-			success: update_feed,
-			error: function() { console.log(arguments); }
-		});
+				type: $form.attr('method'),
+				url: $form.attr('action') + '.json',
+				data: $form.serialize(),
+				success: make_decision($form),
+				error: function() { console.log(arguments); }
+			});
 		$('textarea').val('');
 	}
 
-	function update_feed(response) {
-		$('#posts').prepend(response.post);
+	function make_decision($form) {
+		return function(response) {
+			if ($form.attr('action') == '/comments') {
+				create_comment(response, $form.closest('.user_post_container'));
+			} else {
+				create_post(response);
+			}
+		};
 	}
+
+	function create_comment(response, $user_post_container) {
+		$user_post_container.find('.user_post_comments').append(response.comment);
+	}
+
+	function create_post(response) {
+			$('#posts').prepend(response.post);
+	}
+
 }(jQuery));
 
 (function($){
 	$('#more_posts').on('click', more_posts);
 
-function more_posts(evt) {
+	function more_posts(evt) {
 		var $button = $(evt.currentTarget);
 		evt.preventDefault();
 		$.ajax({
@@ -66,26 +80,79 @@ function more_posts(evt) {
 }(jQuery));
 
 
+// // ONE WAY /////////////////////////////////////////////////
 
 (function($){
 	$('#create_comment').on('submit', create_comment);
 
 	function create_comment(evt) {
 		var $form = $(evt.currentTarget);
-
 		evt.preventDefault();
-
-		// $.ajax({
-		// 	type: $form.attr('method'),
-		// 	url: $form.attr('action') + '.json',
-		// 	data: $form.serialize(),
-		// 	success: update_comment,
-		// 	error: function() { console.log(arguments); }
-		// });
-		// $('textarea').val('');
+		// console.log($form.attr('action'));
+		$.ajax({
+			type: $form.attr('method'),
+			url: $form.attr('action') + '.json',
+			data: $form.serialize(),
+			success: update_comment($form.closest('.user_post_container')),
+			error: function() { console.log(arguments); }
+		});
+		$('textarea').val('');
 	}
 
-	function update_coment(response) {
-		// $('#posts').prepend(response.post);
+	function update_comment($post_container) {
+		return function(response){
+			$post_container.find('.user_post_comments').append(response.post);
+		};
 	}
+
 }(jQuery));
+
+// // ANOTHER WAY //////////////////////////////////////////
+
+
+// (function($){
+// 	$('#create_comment2').on('submit', create_comment);
+
+// 	function create_comment(evt) {
+// 		var $form = $(evt.currentTarget);
+// 		evt.preventDefault();
+
+// 		$.ajax({
+// 			type: $form.attr('method'),
+// 			url: $form.attr('action') + '.json',
+// 			data: $form.serialize(),
+// 			success: function(response){
+// 				$form.closest('.user_post_container').find('.user_post_comments').append(response.post);
+// 			},
+// 			error: function() { console.log(arguments); }
+// 		});
+// 		$('textarea').val('');
+// 	}
+
+// }(jQuery));
+
+// // YET ANOTHER WAY /////////////////////////////////////////////////
+
+// (function($){
+// 	$('#create_comment3').on('submit', create_comment);
+
+// 	function create_comment(evt) {
+// 		var $form = $(evt.currentTarget);
+// 		evt.preventDefault();
+
+// 		$.ajax({
+// 			type: $form.attr('method'),
+// 			url: $form.attr('action') + '.json',
+// 			data: $form.serialize(),
+// 			success: update_comment,
+// 			error: function() { console.log(arguments); }
+// 		});
+// 		$('textarea').val('');
+
+// 		function update_comment(response){
+// 			$form.closest('.user_post_container').find('.user_post_comments').append(response.post);
+// 		}
+
+// 	}
+
+// }(jQuery));

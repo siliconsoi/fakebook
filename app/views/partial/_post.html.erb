@@ -1,10 +1,9 @@
 <% posts.each do |post| %>
-	<div class="well">
+	<div class="well user_post_container">
 		<%= render :partial => "partial/poster_details", :locals => {:post => post} %>
 		<ul class="user_post_comments">
-			<%= render :partial => "partial/each_comment", :locals => {:post => post} %>
+			<%= render :partial => "partial/each_comment", :locals => {:comments => post.comments} %>
 		</ul>
 		<%= render :partial => "partial/form_for_comment", :locals => {:post => post} %>
 	</div>
 <% end %>
-

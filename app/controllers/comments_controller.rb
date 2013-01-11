@@ -1,6 +1,4 @@
 class CommentsController < ApplicationController
-  def new
-  end
 
   def create
     comment = Comment.for_user(current_user, params[:comment])
@@ -8,8 +6,8 @@ class CommentsController < ApplicationController
       format.html { redirect_to posts_path }
       format.json do
         self.formats = [:html]
-        content = render_to_string :partial => 'partial/post', :locals => {:posts => [post]}
-        render :json => {:post => content }
+        content = render_to_string :partial => 'partial/each_comment', :locals => {:comments => [comment]}
+        render :json => {:comment => content }
       end
     end
   end

@@ -12,6 +12,7 @@ class Comment < ActiveRecord::Base
       comment.body = comm[:body]
       comment.post_id = comm[:post_id]
       comment.save
+      comment
   end
 
 end
