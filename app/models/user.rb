@@ -2,6 +2,8 @@ require 'role_user'
 require "role"
 
 class User < ActiveRecord::Base
+  # after_create :set_order_attribute
+
   belongs_to :role
   has_one :role_user
   has_one :role, :through => :role_user
@@ -15,7 +17,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email,:avatar ,:firstname, :lastname, :password, :password_confirmation, :gender, :birthdate, :remember_me, :avatar_file_name,
-                  :avatar_content_type, :avatar_file_size, :avatar_updated_at, :role
+                  :avatar_content_type, :avatar_file_size, :avatar_updated_at, :role, :username
   # Avatar
   has_attached_file :avatar,
                     :styles =>{
@@ -62,5 +64,11 @@ class User < ActiveRecord::Base
           friendships.join(" or ") + "user_id = " + self.id.to_s
         end
   end
+
+  def self.set_order_attribute(user)
+        sql = "UPDATE users SET username = id WHERE id = #{user.id}"
+        connection.update(sql)
+  end
+
 
 end

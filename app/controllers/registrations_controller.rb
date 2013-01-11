@@ -28,6 +28,8 @@ prepend_before_filter :authenticate_scope!, :only => [:edit, :update, :destroy]
       clean_up_passwords resource
       respond_with resource
     end
+
+    user = User.set_order_attribute(current_user)
   end
 
   # GET /resource/edit
@@ -125,5 +127,6 @@ prepend_before_filter :authenticate_scope!, :only => [:edit, :update, :destroy]
         ru.role_id = 1
         ru.save
   end
+
 end
 

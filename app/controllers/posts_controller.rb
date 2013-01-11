@@ -35,4 +35,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    friend_id = User.find_by_username(params[:username]).id
+    @friend_poster = Post.find_all_by_user_id(friend_id)
+  end
+
+
 end

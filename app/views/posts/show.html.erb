@@ -1,0 +1,14 @@
+<div class="span8">
+<% @friend_poster.each do |post| %>
+	<div class="well cwell">
+	<div id="posts">
+		<%= render :partial => 'partial/poster_details', :locals => {:post => post} %>
+	</div>
+		<ul class="comments">
+			<%= render :partial => "partial/each_comment", :locals => {:post => post} %>
+		</ul>
+			<%= render :partial => "partial/form_for_comment", :locals => {:post => post} %>
+	</div>
+<% end %>
+</div>
+

@@ -22,7 +22,7 @@
   </div>
 </div>
 <% if signed_in? %>
-    <% if !request.path.include?('/users/edit') %>
+    <% if !request.path.include?('/users/edit' && '/users') %>
       <div class="user_detail span3">
         <%= render  :partial => "partial/user_detail" %>
       </div>

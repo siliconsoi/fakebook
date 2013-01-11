@@ -7,6 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :firstname, :null => false, :default => ""
       t.string :lastname, :null => false, :default => ""
       t.string :gender, :null => false, :default => ""
+      t.string   :username
       t.datetime :birthdate
       ## Recoverable
       t.string   :reset_password_token
@@ -38,9 +39,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
 
       t.timestamps
-    end
+
+      end
 
     add_index :users, :email,                :unique => true
+    add_index :users, :username,                :unique => true
     add_index :users, :reset_password_token, :unique => true
     # add_index :users, :confirmation_token,   :unique => true
     # add_index :users, :unlock_token,         :unique => true
