@@ -43,19 +43,11 @@
 	function make_decision($form) {
 		return function(response) {
 			if ($form.attr('action') == '/comments') {
-				create_comment(response, $form.closest('.user_post_container'));
+				$form.closest('.user_post_container').find ('.user_post_comments').append(response.comment);
 			} else {
-				create_post(response);
+				$('#posts').prepend(response.post);
 			}
 		};
-	}
-
-	function create_comment(response, $user_post_container) {
-		$user_post_container.find('.user_post_comments').append(response.comment);
-	}
-
-	function create_post(response) {
-			$('#posts').prepend(response.post);
 	}
 
 }(jQuery));

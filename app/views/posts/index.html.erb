@@ -4,10 +4,11 @@
 	</div>
 
 	<div id="posts">
-		<%= render :partial => 'partial/post', :locals => { :posts => @feeds } %>
+		<%= render :partial => 'partial/post', :locals => { :posts => @feed } %>
 	</div>
-
+	<%if @next_page %>
 	<div style="padding-left: 270px;" >
 		<a href="/posts?page=<%=@next_page%>" id="more_posts" class="btn btn-primary">Moooore</a>
 	</div>
+	<% end %>
 </div>
