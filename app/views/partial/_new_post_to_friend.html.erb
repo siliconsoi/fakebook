@@ -1,4 +1,4 @@
-<%text = "Leave message to " %>
+<%text = "Leave message to " + User.find_by_username(params[:username]).firstname %>
 
 Post your status here!<br />
 <%= form_for :posts, :url => posts_path, :html => {:id => "create_post"} do |f| %>

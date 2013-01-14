@@ -36,7 +36,11 @@ class PostsController < ApplicationController
 
   def show
     friend_id = User.find_by_username(params[:username]).id
-    @friend_poster = Post.find_all_by_user_id(friend_id)
+    # @friend_poster = Post.where("user_id in (?)", friend_id).order('id DESC')
+    @friend_poster = Feed.all_post(friend_id)
+
+    # id = User.find_by_username(params[:username]).id
+    # @friend_poster = Post.find_by_sql("select p.user_id, pt.friend_id,p.status, pt.message from posts as p join post_tos as pt ON p.user_id = pt.user_id where friend_id = #{id} && p.user_id = #{id}");
   end
 
 

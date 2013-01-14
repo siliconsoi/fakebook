@@ -13,6 +13,7 @@ namespace :fb do
       :create_friendships,
       :create_posts,
       :create_comments,
+      :create_post_tos,
       :create_roles,
       :assign_roles
     ]
@@ -73,6 +74,15 @@ namespace :fb do
       RoleUser.new(:user_id => 4, :role_id => 1).save
       RoleUser.new(:user_id => 5, :role_id => 1).save
       RoleUser.new(:user_id => 6, :role_id => 1).save
+    end
+
+    task :create_post_tos => :environment do
+      puts "Creating PostTo"
+      PostTo.new({:message => 'Hi Bruce',:friend_id => 3, :user_id => 2}).save
+      PostTo.new({:message => 'How about u John',:friend_id => 4, :user_id => 2}).save
+      PostTo.new({:message => 'I like u Gaga',:friend_id => 5, :user_id => 2}).save
+      PostTo.new({:message => 'Hi Tony Jaa Hahah',:friend_id => 2, :user_id => 3}).save
+      PostTo.new({:message => 'Hi Tony Jaa Hahah From 3',:friend_id => 2, :user_id => 2}).save
     end
 
   end

@@ -1,6 +1,6 @@
 
 $(function(){
-	$(".comments").mouseenter(function(evt){
+	$(".user_post_comment").mouseenter(function(evt){
 		$(this).css("background-color","#CBE0E3");
 	}).mouseout(function(evt){
 		$(this).css("background-color","");

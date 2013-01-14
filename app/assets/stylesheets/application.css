@@ -71,8 +71,8 @@
 	width: 514px;
 }
 
-.sidebar-nav {
-	width: 514px;
+.sidebar-nav, .user_post_container {
+	width: 515px;
 }
 
 .post-time {

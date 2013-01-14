@@ -11,4 +11,8 @@ class Feed
     @posts = Post.where("user_id in (?)",friend_ids).order('id DESC')
   end
 
+  def self.all_post(user_id)
+    post = Post.where("user_id in (?)", user_id).order('id DESC')
+  end
+
 end

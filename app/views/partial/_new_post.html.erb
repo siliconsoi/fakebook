@@ -1,4 +1,4 @@
-<%text = "What\'s going on, "+@current_user.firstname %>
+<%text = "What\'s going on, "+ current_user.firstname %>
 
 Post your status here!<br />
 <%= form_for :posts, :url => posts_path, :html => {:class => "create_action"} do |f| %>

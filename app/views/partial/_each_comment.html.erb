@@ -1,5 +1,5 @@
 <% comments.each do |comment|%>
-	<li class="user_post_comment">
+	<div class="user_post_comment">
 		<%= image_tag comment.user.avatar.url(:thumb), :class => 'user_comment_avatar' %>
 			<span class="each_comment">
 			<%if comment.user.username.nil? %>
