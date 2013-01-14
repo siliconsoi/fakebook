@@ -1,7 +1,7 @@
 <% post.comments.each do |comment|%>
 	<div class="comments" >
 		<%= image_tag comment.user.avatar.url(:thumb), :class => 'user_comment_avatar' %>
-			<span>
+			<span class="each_comment">
 			<%if comment.user.username.nil? %>
 				<%= link_to comment.user.firstname, profile_path(comment.user.id) %>: </a> <%= comment.body %>
 			<% else %>

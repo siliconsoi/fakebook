@@ -94,3 +94,11 @@
 	margin-left: 5px;
 }
 
+.btn-search {
+	margin-top: 0px;
+}
+
+.user_post_avatar, .status, .each_comment, .user_comment_avatar {
+	vertical-align: top;
+}
+
