@@ -1,7 +1,7 @@
-<%text = "What\'s going on, "+@current_user.firstname %>
+<%text = "Leave message to " %>
 
 Post your status here!<br />
-<%= form_for :posts, :url => posts_path, :html => {:class => "create_action"} do |f| %>
+<%= form_for :posts, :url => posts_path, :html => {:id => "create_post"} do |f| %>
 	<%= f.text_area :status, :placeholder => text, :style=>" width: 500px; resize: none;", :rows=>"3" %><br />
 	<%= f.submit "Post", :class => "btn btn-primary" %>
 	<span class="clear_text"><input type="button" class="btn clear" value="Clear"></span>

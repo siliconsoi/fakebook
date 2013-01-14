@@ -1,5 +1,10 @@
+<% urs_path = post.user.username %>
 <div class="user_post">
-	<%= image_tag post.user.avatar.url(:thumb), :class => 'user_post_avatar' %>
-	<a href="#"><%= post.user.firstname %>: </a>
-	<span><%= post.status %></span>
+		<%= image_tag post.user.avatar.url(:thumb), :class => 'user_post_avatar' %>
+	<span class='status'>
+		<%= link_to post.user.firstname, profile_path(urs_path) %>: </a> <%= post.status %>
+	</span>
+	<div class='post-time'><%="#{time_ago_in_words(post.created_at)} ago "%></div>
 </div>
+
+

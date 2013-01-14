@@ -2,7 +2,7 @@
 	<div class="span5">
 		<div class="well sidebar-nav">
 			<form class="form-search">
-			  <div class="input-prepend" style="margin-top: 13px;">
+			  <div class="input-prepend">
 			  	<button type="submit" class="btn btn-search">Search</button>
 			    <input type="text" class="span3 search-query" name="keyword">
 			  </div>
@@ -38,4 +38,5 @@
 		</table>
 	  </div><!--/.well -->
 <%end%>
+<div style="padding-left: 270px;" ><%= paginate @results %></div>
 	</div>

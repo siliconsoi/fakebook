@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
         render :json => {:comment => content }
       end
     end
+
   end
 
   def destroy

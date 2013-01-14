@@ -1,7 +1,13 @@
 <% comments.each do |comment|%>
 	<li class="user_post_comment">
 		<%= image_tag comment.user.avatar.url(:thumb), :class => 'user_comment_avatar' %>
-		<span><a href="#"><%= comment.user.firstname %> </a>:</span>
-		<span><%= comment.body %></span>
-	</li>
+			<span class="each_comment">
+			<%if comment.user.username.nil? %>
+				<%= link_to comment.user.firstname, profile_path(comment.user.id) %>: </a> <%= comment.body %>
+			<% else %>
+				<%= link_to comment.user.firstname, profile_path(comment.user.username) %>: </a> <%= comment.body %>
+			<% end %>
+			</span>
+			<div class='comment-time'><%="#{time_ago_in_words(comment.created_at)} ago "%></div>
+	</div>
 <%end%>

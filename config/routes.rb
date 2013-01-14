@@ -17,6 +17,9 @@ Fakebook::Application.routes.draw do
 
     match 'manage_comments', :to => 'admins#manage_comments', :as => :manage_comments
     match 'manage_comments/edit/:id' => :edit, :as => :edit_manage_comments
+
+    # match "/:firstname(.:lastname)" => 'posts#show', :as => :profile
+    match "/:username" => 'posts#show', :as => :profile
   end
 
 

@@ -67,3 +67,38 @@
 	margin-top: 5px;
 }
 
+.cwell {
+	width: 514px;
+}
+
+.sidebar-nav {
+	width: 514px;
+}
+
+.post-time {
+	color: #B5AFAF;
+	font-size: 10px;
+	margin-left: 55px;
+	margin-top: -15px;
+}
+
+.comment-time {
+	color: #B5AFAF;
+	font-size: 10px;
+	margin-left: 35px;
+	margin-top: -10px;
+}
+
+#ch-btn {
+	margin-bottom: 10px;
+	margin-left: 5px;
+}
+
+.btn-search {
+	margin-top: 0px;
+}
+
+.user_post_avatar, .status, .each_comment, .user_comment_avatar {
+	vertical-align: top;
+}
+
